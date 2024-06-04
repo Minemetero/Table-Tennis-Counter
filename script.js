@@ -2,7 +2,7 @@ let players = [];
 let scores = {};
 let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
-let matchScores = {}; // Store match scores
+let currentMatchScores = {}; // Stores scores of current match
 
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
@@ -41,29 +41,47 @@ function startGame() {
     document.getElementById('playerListGroup').style.display = 'none';
     document.getElementById('initialButtons').style.display = 'none';
     document.getElementById('scoreboard').style.display = 'block';
+    updatePlayerScoreList();
+    startMatch();
+}
+
+function startMatch() {
+    currentMatchScores = {};
     updateCurrentMatch();
 }
 
 function incrementScore(playerName) {
-    scores[playerName]++;
-    matchScores[playerName]++;
-    updatePlayerScoreList();
-    if (matchScores[playerName] >= winBalls) {
-        document.getElementById('result').innerText = `${playerName} Wins this match!`;
-        setTimeout(() => {
-            document.getElementById('result').innerText = '';
-            updateTotalScores();
-            updateCurrentMatch();
-        }, 2000);
+    currentMatchScores[playerName] = currentMatchScores[playerName] || 0;
+    currentMatchScores[playerName]++;
+    updateCurrentMatch();
+    const totalScore = Object.values(currentMatchScores).reduce((total, score) => total + score, 0);
+    if (totalScore >= winBalls) {
+        endMatch();
     }
 }
 
-function updateTotalScores() {
+function updateCurrentMatch() {
+    const match = document.getElementById('currentMatch');
+    match.innerHTML = '';
     players.forEach(player => {
-        scores[player] += matchScores[player] || 0; // Update total score with match score
-        matchScores[player] = 0; // Reset match score
+        const score = currentMatchScores[player] || 0;
+        const div = document.createElement('div');
+        div.className = 'player';
+        div.innerHTML = `
+            <label>${player}: <span>${score}</span></label>
+            <button class="score-button" onclick="incrementScore('${player}')">Score</button>
+        `;
+        match.appendChild(div);
+    });
+}
+
+function endMatch() {
+    Object.keys(currentMatchScores).forEach(player => {
+        scores[player] = scores[player] || 0;
+        scores[player] += currentMatchScores[player];
     });
     updatePlayerScoreList();
+    startMatch();
 }
 
 function updatePlayerScoreList() {
@@ -71,32 +89,15 @@ function updatePlayerScoreList() {
     playerScoreList.innerHTML = '';
     players.forEach(player => {
         const li = document.createElement('li');
-        li.textContent = `${player}: ${scores[player]}`;
+        li.textContent = `${player}: ${scores[player] || 0}`;
         playerScoreList.appendChild(li);
     });
-}
-
-function updateCurrentMatch() {
-    const match = document.getElementById('currentMatch');
-    const player1 = players[currentMatch[0]];
-    const player2 = players[currentMatch[1]];
-    match.innerHTML = `
-        <div class="player">
-            <label>${player1}: <span>${matchScores[player1] || 0}</span></label>
-            <button class="score-button" onclick="incrementScore('${player1}')">Score</button>
-        </div>
-        <div class="player">
-            <label>${player2}: <span>${matchScores[player2] || 0}</span></label>
-            <button class="score-button" onclick="incrementScore('${player2}')">Score</button>
-        </div>
-    `;
 }
 
 function resetScores() {
     players = [];
     scores = {};
     currentMatch = [0, 1];
-    matchScores = {};
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('scoreboard').style.display = 'none';
     document.getElementById('result').innerText = '';
