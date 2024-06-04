@@ -1,6 +1,7 @@
 let players = [];
 let scores = {};
-let currentPlayerIndex = 0;
+let currentMatch = [0, 1]; // Indexes of the players in the current match
+let winBalls = 5;
 
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
@@ -29,23 +30,26 @@ function startGame() {
         alert('Please add at least two players');
         return;
     }
-    document.getElementById('scoreboard').style.display = 'block';
-    updateScoreboard();
-}
-
-function incrementScore(playerName) {
-    const winBalls = parseInt(document.getElementById('winBalls').value);
+    winBalls = parseInt(document.getElementById('winBalls').value);
     if (isNaN(winBalls) || winBalls <= 0) {
         alert('Please enter a valid number of winning balls');
         return;
     }
+    document.getElementById('scoreboard').style.display = 'block';
+    updateScoreboard();
+    updateCurrentMatch();
+}
+
+function incrementScore(playerName) {
     scores[playerName]++;
     updateScoreboard();
     if (scores[playerName] >= winBalls) {
-        document.getElementById('result').innerText = `${playerName} Wins!`;
-        disableButtons();
+        document.getElementById('result').innerText = `${playerName} Wins this round!`;
+        setTimeout(() => {
+            document.getElementById('result').innerText = '';
+            updateCurrentMatch();
+        }, 2000);
     }
-    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 }
 
 function updateScoreboard() {
@@ -56,23 +60,32 @@ function updateScoreboard() {
         div.className = 'player';
         div.innerHTML = `
             <label>${player}: <span>${scores[player]}</span></label>
-            <button class="score-button" onclick="incrementScore('${player}')">Score</button>
         `;
         playerScores.appendChild(div);
     });
 }
 
-function disableButtons() {
-    document.querySelectorAll('.score-button').forEach(button => {
-        button.disabled = true;
-        button.classList.add('disabled');
-    });
+function updateCurrentMatch() {
+    const match = document.getElementById('currentMatch');
+    const player1 = players[currentMatch[0]];
+    const player2 = players[currentMatch[1]];
+    match.innerHTML = `
+        <div class="player">
+            <label>${player1}: <span>${scores[player1]}</span></label>
+            <button class="score-button" onclick="incrementScore('${player1}')">Score</button>
+        </div>
+        <div class="player">
+            <label>${player2}: <span>${scores[player2]}</span></label>
+            <button class="score-button" onclick="incrementScore('${player2}')">Score</button>
+        </div>
+    `;
+    currentMatch = [(currentMatch[0] + 1) % players.length, (currentMatch[1] + 1) % players.length];
 }
 
 function resetScores() {
     players = [];
     scores = {};
-    currentPlayerIndex = 0;
+    currentMatch = [0, 1];
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('scoreboard').style.display = 'none';
     document.getElementById('result').innerText = '';
