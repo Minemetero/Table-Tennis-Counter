@@ -7,6 +7,7 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .container {
     background-color: white;
     padding: 20px;
@@ -15,17 +16,27 @@ body {
     width: 300px;
     text-align: center;
 }
-.input-group {
+
+.input-group, .player-group, .result-group, .buttons {
     margin-bottom: 20px;
 }
+
 .input-group input {
     width: 50px;
     text-align: center;
 }
-.buttons {
+
+.player-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .buttons button {
     padding: 10px 20px;
     font-size: 16px;
@@ -33,6 +44,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .buttons button:hover {
     background-color: #ddd;
 }

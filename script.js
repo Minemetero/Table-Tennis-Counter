@@ -2,7 +2,11 @@ let score1 = 0;
 let score2 = 0;
 
 function incrementScore(player) {
-    const winBalls = document.getElementById('winBalls').value;
+    const winBalls = parseInt(document.getElementById('winBalls').value);
+    if (isNaN(winBalls) || winBalls <= 0) {
+        alert('请输入有效的胜利球数');
+        return;
+    }
     if (player === 1) {
         score1++;
         document.getElementById('score1').innerText = score1;
@@ -21,7 +25,7 @@ function incrementScore(player) {
 }
 
 function disableButtons() {
-    document.querySelectorAll('.input-group button').forEach(button => {
+    document.querySelectorAll('.player button').forEach(button => {
         button.disabled = true;
     });
 }
@@ -32,7 +36,7 @@ function resetScores() {
     document.getElementById('score1').innerText = score1;
     document.getElementById('score2').innerText = score2;
     document.getElementById('result').innerText = '';
-    document.querySelectorAll('.input-group button').forEach(button => {
+    document.querySelectorAll('.player button').forEach(button => {
         button.disabled = false;
     });
 }
