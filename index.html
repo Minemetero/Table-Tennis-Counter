@@ -13,21 +13,26 @@
             <label for="winBalls">Set Winning Balls: </label>
             <input type="number" id="winBalls" value="8" min="1">
         </div>
-        <div class="player-group">
-            <div class="player">
-                <label>Player 1: <span id="score1">0</span></label>
-                <button class="score-button" onclick="incrementScore(1)">Score</button>
-            </div>
-            <div class="player">
-                <label>Player 2: <span id="score2">0</span></label>
-                <button class="score-button" onclick="incrementScore(2)">Score</button>
-            </div>
+        <div class="player-input-group">
+            <input type="text" id="playerName" placeholder="Enter Player Name">
+            <button onclick="addPlayer()">Add Player</button>
         </div>
-        <div class="result-group">
-            <p id="result"></p>
+        <div class="player-list">
+            <h2>Players:</h2>
+            <ul id="playerList"></ul>
         </div>
         <div class="buttons">
-            <button class="reset-button" onclick="resetScores()">Reset</button>
+            <button class="start-button" onclick="startGame()">Start Game</button>
+        </div>
+        <div class="scoreboard" id="scoreboard" style="display: none;">
+            <h2>Scoreboard</h2>
+            <div id="playerScores"></div>
+            <div class="result-group">
+                <p id="result"></p>
+            </div>
+            <div class="buttons">
+                <button class="reset-button" onclick="resetScores()">Reset</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

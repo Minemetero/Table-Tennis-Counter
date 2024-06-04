@@ -1,38 +1,73 @@
+:root {
+    --primary-bg-color: #2c3e50;
+    --secondary-bg-color: #34495e;
+    --primary-text-color: #ecf0f1;
+    --button-bg-color: #ecf0f1;
+    --button-text-color: #2c3e50;
+    --button-hover-bg-color: #bdc3c7;
+    --reset-button-bg-color: #e74c3c;
+    --reset-button-hover-bg-color: #c0392b;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #2c3e50;
+    background: linear-gradient(to right, #34495e, #2c3e50);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: #ecf0f1;
+    color: var(--primary-text-color);
 }
 
 .container {
-    background-color: #34495e;
+    background-color: var(--secondary-bg-color);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 320px;
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.05);
 }
 
 h1 {
     margin-bottom: 20px;
 }
 
-.input-group, .player-group, .result-group, .buttons {
+.input-group, .player-input-group, .player-list, .buttons, .scoreboard {
     margin-bottom: 20px;
 }
 
-.input-group input {
+.input-group input, .player-input-group input {
     width: 50px;
     text-align: center;
     padding: 5px;
     border-radius: 5px;
     border: none;
     margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.input-group input:focus, .player-input-group input:focus {
+    background-color: #ecf0f1;
+}
+
+.player-input-group input {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.player-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.player-list li {
+    margin: 5px 0;
 }
 
 .player-group {
@@ -46,32 +81,34 @@ h1 {
     align-items: center;
 }
 
-.score-button, .reset-button {
+.score-button, .reset-button, .start-button {
     padding: 15px 25px;
     font-size: 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
-    color: #2c3e50;
-    background-color: #ecf0f1;
-    transition: background-color 0.3s;
+    color: var(--button-text-color);
+    background-color: var(--button-bg-color);
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.score-button:hover, .reset-button:hover {
-    background-color: #bdc3c7;
+.score-button:hover, .reset-button:hover, .start-button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: scale(1.1);
 }
 
 .reset-button {
     width: 100%;
-    background-color: #e74c3c;
-    color: #ecf0f1;
+    background-color: var(--reset-button-bg-color);
+    color: var(--primary-text-color);
 }
 
 .reset-button:hover {
-    background-color: #c0392b;
+    background-color: var(--reset-button-hover-bg-color);
 }
 
 label {
     font-size: 18px;
+    margin-bottom: 10px;
 }
