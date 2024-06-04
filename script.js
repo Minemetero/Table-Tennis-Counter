@@ -4,7 +4,7 @@ let score2 = 0;
 function incrementScore(player) {
     const winBalls = parseInt(document.getElementById('winBalls').value);
     if (isNaN(winBalls) || winBalls <= 0) {
-        alert('请输入有效的胜利球数');
+        alert('Please enter a valid number of winning balls');
         return;
     }
     if (player === 1) {
@@ -25,7 +25,7 @@ function incrementScore(player) {
 }
 
 function disableButtons() {
-    document.querySelectorAll('.player button').forEach(button => {
+    document.querySelectorAll('.score-button').forEach(button => {
         button.disabled = true;
     });
 }
@@ -36,7 +36,7 @@ function resetScores() {
     document.getElementById('score1').innerText = score1;
     document.getElementById('score2').innerText = score2;
     document.getElementById('result').innerText = '';
-    document.querySelectorAll('.player button').forEach(button => {
+    document.querySelectorAll('.score-button').forEach(button => {
         button.disabled = false;
     });
 }

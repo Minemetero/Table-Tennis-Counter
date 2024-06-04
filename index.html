@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>桌球计分系统</title>
+    <title>Pool Score Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>桌球计分系统</h1>
+        <h1>Pool Score Tracker</h1>
         <div class="input-group">
-            <label for="winBalls">设定胜利球数: </label>
+            <label for="winBalls">Set Winning Balls: </label>
             <input type="number" id="winBalls" value="8" min="1">
         </div>
         <div class="player-group">
             <div class="player">
                 <label>Player 1: <span id="score1">0</span></label>
-                <button onclick="incrementScore(1)">得分</button>
+                <button class="score-button" onclick="incrementScore(1)">Score</button>
             </div>
             <div class="player">
                 <label>Player 2: <span id="score2">0</span></label>
-                <button onclick="incrementScore(2)">得分</button>
+                <button class="score-button" onclick="incrementScore(2)">Score</button>
             </div>
         </div>
         <div class="result-group">
             <p id="result"></p>
         </div>
         <div class="buttons">
-            <button onclick="resetScores()">重置</button>
+            <button class="reset-button" onclick="resetScores()">Reset</button>
         </div>
     </div>
     <script src="script.js"></script>
