@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Tennis Counter</title>
+    <title>Pool Score Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Table Tennis Counter</h1>
-        <div class="input-group">
+        <h1>Pool Score Tracker</h1>
+        <div class="input-group" id="input-group">
             <label for="winBalls">Set Winning Balls: </label>
             <input type="number" id="winBalls" value="5" min="1">
         </div>
-        <div class="player-input-group">
+        <div class="player-input-group" id="player-input-group">
             <input type="text" id="playerName" placeholder="Enter Player Name">
             <button onclick="addPlayer()">Add Player</button>
         </div>
-        <div class="player-list">
+        <div class="player-list" id="player-list">
             <h2>Players:</h2>
             <ul id="playerList"></ul>
         </div>
-        <div class="buttons">
+        <div class="buttons" id="buttons">
             <button class="start-button" onclick="startGame()">Start Game</button>
         </div>
         <div class="scoreboard" id="scoreboard" style="display: none;">
@@ -36,6 +36,10 @@
                 <button class="reset-button" onclick="resetScores()">Reset</button>
             </div>
         </div>
+    </div>
+    <div class="selected-players" id="selected-players" style="display: none;">
+        <h2>Selected Players:</h2>
+        <ul id="selectedPlayerList"></ul>
     </div>
     <script src="script.js"></script>
 </body>

@@ -36,8 +36,24 @@ function startGame() {
         return;
     }
     document.getElementById('scoreboard').style.display = 'block';
+    document.getElementById('input-group').style.display = 'none';
+    document.getElementById('player-input-group').style.display = 'none';
+    document.getElementById('player-list').style.display = 'none';
+    document.getElementById('buttons').style.display = 'none';
+    document.getElementById('selected-players').style.display = 'block';
+    updateSelectedPlayerList();
     updateScoreboard();
     updateCurrentMatch();
+}
+
+function updateSelectedPlayerList() {
+    const selectedPlayerList = document.getElementById('selectedPlayerList');
+    selectedPlayerList.innerHTML = '';
+    players.forEach(player => {
+        const li = document.createElement('li');
+        li.textContent = player;
+        selectedPlayerList.appendChild(li);
+    });
 }
 
 function incrementScore(playerName) {
@@ -88,5 +104,10 @@ function resetScores() {
     currentMatch = [0, 1];
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('scoreboard').style.display = 'none';
+    document.getElementById('input-group').style.display = 'block';
+    document.getElementById('player-input-group').style.display = 'block';
+    document.getElementById('player-list').style.display = 'block';
+    document.getElementById('buttons').style.display = 'block';
+    document.getElementById('selected-players').style.display = 'none';
     document.getElementById('result').innerText = '';
 }
