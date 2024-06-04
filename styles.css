@@ -14,7 +14,7 @@ body {
     background: linear-gradient(to right, #34495e, #2c3e50);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     height: 100vh;
     margin: 0;
     color: var(--primary-text-color);
@@ -28,25 +28,13 @@ body {
     width: 320px;
     text-align: center;
     transition: all 0.3s ease;
-    margin: 10px;
 }
 
-.selected-players {
-    background-color: var(--secondary-bg-color);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 320px;
-    text-align: center;
-    transition: all 0.3s ease;
-    margin: 10px;
-}
-
-.container:hover, .selected-players:hover {
+.container:hover {
     transform: scale(1.05);
 }
 
-h1, h2 {
+h1 {
     margin-bottom: 20px;
 }
 
@@ -73,24 +61,13 @@ h1, h2 {
     margin-right: 10px;
 }
 
-.player-list ul, .selected-players ul {
+.player-list ul, #playerScoreList {
     list-style: none;
     padding: 0;
 }
 
-.player-list li, .selected-players li {
+.player-list li, #playerScoreList li {
     margin: 5px 0;
-}
-
-.player-group {
-    display: flex;
-    justify-content: space-around;
-}
-
-.player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .score-button, .reset-button, .start-button {

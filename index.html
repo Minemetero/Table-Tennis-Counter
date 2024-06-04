@@ -9,37 +9,38 @@
 <body>
     <div class="container">
         <h1>Pool Score Tracker</h1>
-        <div class="input-group" id="input-group">
+        <div class="input-group" id="initialSetup">
             <label for="winBalls">Set Winning Balls: </label>
             <input type="number" id="winBalls" value="5" min="1">
         </div>
-        <div class="player-input-group" id="player-input-group">
+        <div class="player-input-group" id="playerInputGroup">
             <input type="text" id="playerName" placeholder="Enter Player Name">
             <button onclick="addPlayer()">Add Player</button>
         </div>
-        <div class="player-list" id="player-list">
+        <div class="player-list" id="playerListGroup">
             <h2>Players:</h2>
             <ul id="playerList"></ul>
         </div>
-        <div class="buttons" id="buttons">
+        <div class="buttons" id="initialButtons">
             <button class="start-button" onclick="startGame()">Start Game</button>
         </div>
+        
         <div class="scoreboard" id="scoreboard" style="display: none;">
-            <h2>Current Match</h2>
-            <div id="currentMatch"></div>
-            <h2>Scoreboard</h2>
-            <div id="playerScores"></div>
-            <div class="result-group">
-                <p id="result"></p>
+            <div id="playerContainer">
+                <h2>Players:</h2>
+                <ul id="playerScoreList"></ul>
             </div>
-            <div class="buttons">
-                <button class="reset-button" onclick="resetScores()">Reset</button>
+            <div id="matchContainer">
+                <h2>Current Match</h2>
+                <div id="currentMatch"></div>
+                <div class="result-group">
+                    <p id="result"></p>
+                </div>
+                <div class="buttons">
+                    <button class="reset-button" onclick="resetScores()">Reset</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="selected-players" id="selected-players" style="display: none;">
-        <h2>Selected Players:</h2>
-        <ul id="selectedPlayerList"></ul>
     </div>
     <script src="script.js"></script>
 </body>

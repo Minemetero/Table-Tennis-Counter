@@ -35,30 +35,28 @@ function startGame() {
         alert('Please enter a valid number of winning balls');
         return;
     }
+    document.getElementById('initialSetup').style.display = 'none';
+    document.getElementById('playerInputGroup').style.display = 'none';
+    document.getElementById('playerListGroup').style.display = 'none';
+    document.getElementById('initialButtons').style.display = 'none';
     document.getElementById('scoreboard').style.display = 'block';
-    document.getElementById('input-group').style.display = 'none';
-    document.getElementById('player-input-group').style.display = 'none';
-    document.getElementById('player-list').style.display = 'none';
-    document.getElementById('buttons').style.display = 'none';
-    document.getElementById('selected-players').style.display = 'block';
-    updateSelectedPlayerList();
-    updateScoreboard();
+    updatePlayerScoreList();
     updateCurrentMatch();
 }
 
-function updateSelectedPlayerList() {
-    const selectedPlayerList = document.getElementById('selectedPlayerList');
-    selectedPlayerList.innerHTML = '';
+function updatePlayerScoreList() {
+    const playerScoreList = document.getElementById('playerScoreList');
+    playerScoreList.innerHTML = '';
     players.forEach(player => {
         const li = document.createElement('li');
-        li.textContent = player;
-        selectedPlayerList.appendChild(li);
+        li.textContent = `${player}: ${scores[player]}`;
+        playerScoreList.appendChild(li);
     });
 }
 
 function incrementScore(playerName) {
     scores[playerName]++;
-    updateScoreboard();
+    updatePlayerScoreList();
     if (scores[playerName] >= winBalls) {
         document.getElementById('result').innerText = `${playerName} Wins this round!`;
         setTimeout(() => {
@@ -66,19 +64,6 @@ function incrementScore(playerName) {
             updateCurrentMatch();
         }, 2000);
     }
-}
-
-function updateScoreboard() {
-    const playerScores = document.getElementById('playerScores');
-    playerScores.innerHTML = '';
-    players.forEach(player => {
-        const div = document.createElement('div');
-        div.className = 'player';
-        div.innerHTML = `
-            <label>${player}: <span>${scores[player]}</span></label>
-        `;
-        playerScores.appendChild(div);
-    });
 }
 
 function updateCurrentMatch() {
@@ -104,10 +89,9 @@ function resetScores() {
     currentMatch = [0, 1];
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('scoreboard').style.display = 'none';
-    document.getElementById('input-group').style.display = 'block';
-    document.getElementById('player-input-group').style.display = 'block';
-    document.getElementById('player-list').style.display = 'block';
-    document.getElementById('buttons').style.display = 'block';
-    document.getElementById('selected-players').style.display = 'none';
     document.getElementById('result').innerText = '';
+    document.getElementById('initialSetup').style.display = 'block';
+    document.getElementById('playerInputGroup').style.display = 'block';
+    document.getElementById('playerListGroup').style.display = 'block';
+    document.getElementById('initialButtons').style.display = 'block';
 }
