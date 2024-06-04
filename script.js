@@ -1,8 +1,8 @@
 let players = [];
-let scores = {};
+let totalScores = {};
+let currentMatchScores = {};
 let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
-let currentMatchScores = {}; // Stores scores of current match
 
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
@@ -11,7 +11,7 @@ function addPlayer() {
         return;
     }
     players.push(playerName);
-    scores[playerName] = 0;
+    totalScores[playerName] = 0;
     updatePlayerList();
     document.getElementById('playerName').value = '';
 }
@@ -42,46 +42,46 @@ function startGame() {
     document.getElementById('initialButtons').style.display = 'none';
     document.getElementById('scoreboard').style.display = 'block';
     updatePlayerScoreList();
-    startMatch();
+    startNewMatch();
 }
 
-function startMatch() {
+function startNewMatch() {
     currentMatchScores = {};
+    players.forEach(player => {
+        currentMatchScores[player] = 0;
+    });
     updateCurrentMatch();
 }
 
-function incrementScore(playerName) {
-    currentMatchScores[playerName] = currentMatchScores[playerName] || 0;
+function incrementCurrentMatchScore(playerName) {
     currentMatchScores[playerName]++;
     updateCurrentMatch();
-    const totalScore = Object.values(currentMatchScores).reduce((total, score) => total + score, 0);
-    if (totalScore >= winBalls) {
-        endMatch();
+    if (currentMatchScores[playerName] >= winBalls) {
+        totalScores[playerName]++;
+        document.getElementById('result').innerText = `${playerName} Wins this round!`;
+        setTimeout(() => {
+            document.getElementById('result').innerText = '';
+            updatePlayerScoreList();
+            updateMatchOrder();
+            startNewMatch();
+        }, 2000);
     }
 }
 
 function updateCurrentMatch() {
     const match = document.getElementById('currentMatch');
-    match.innerHTML = '';
-    players.forEach(player => {
-        const score = currentMatchScores[player] || 0;
-        const div = document.createElement('div');
-        div.className = 'player';
-        div.innerHTML = `
-            <label>${player}: <span>${score}</span></label>
-            <button class="score-button" onclick="incrementScore('${player}')">Score</button>
-        `;
-        match.appendChild(div);
-    });
-}
-
-function endMatch() {
-    Object.keys(currentMatchScores).forEach(player => {
-        scores[player] = scores[player] || 0;
-        scores[player] += currentMatchScores[player];
-    });
-    updatePlayerScoreList();
-    startMatch();
+    const player1 = players[currentMatch[0]];
+    const player2 = players[currentMatch[1]];
+    match.innerHTML = `
+        <div class="player">
+            <label>${player1}: <span>${currentMatchScores[player1]}</span></label>
+            <button class="score-button" onclick="incrementCurrentMatchScore('${player1}')">Score</button>
+        </div>
+        <div class="player">
+            <label>${player2}: <span>${currentMatchScores[player2]}</span></label>
+            <button class="score-button" onclick="incrementCurrentMatchScore('${player2}')">Score</button>
+        </div>
+    `;
 }
 
 function updatePlayerScoreList() {
@@ -89,14 +89,22 @@ function updatePlayerScoreList() {
     playerScoreList.innerHTML = '';
     players.forEach(player => {
         const li = document.createElement('li');
-        li.textContent = `${player}: ${scores[player] || 0}`;
+        li.textContent = `${player}: ${totalScores[player]}`;
         playerScoreList.appendChild(li);
     });
 }
 
+function updateMatchOrder() {
+    currentMatch = [(currentMatch[0] + 1) % players.length, (currentMatch[1] + 1) % players.length];
+    if (currentMatch[0] === currentMatch[1]) {
+        currentMatch[1] = (currentMatch[1] + 1) % players.length;
+    }
+}
+
 function resetScores() {
     players = [];
-    scores = {};
+    totalScores = {};
+    currentMatchScores = {};
     currentMatch = [0, 1];
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('scoreboard').style.display = 'none';
