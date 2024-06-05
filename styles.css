@@ -69,6 +69,10 @@ button:hover {
     transform: scale(1.1);
 }
 
+.score-button {
+    padding: 20px 30px;
+}
+
 .reset-button {
     width: 100%;
     background-color: var(--reset-button-bg-color);
@@ -85,25 +89,13 @@ label {
 }
 
 .game-board {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    width: 90%;
     padding: 20px;
     box-sizing: border-box;
-}
-
-.left-panel, .right-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 23%;
-}
-
-.center-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 48%;
 }
 
 .player-scores, .current-match, .match-order, .history {
@@ -111,11 +103,17 @@ label {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
 }
 
 .current-match {
-    width: 100%;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
     padding: 40px;
+}
+
+.match-order, .history {
+    max-height: 300px;
 }
 
 h2 {
