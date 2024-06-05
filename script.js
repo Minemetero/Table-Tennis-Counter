@@ -46,8 +46,9 @@ function startGame() {
     document.getElementById('playerInputGroup').style.display = 'none';
     document.getElementById('playerListGroup').style.display = 'none';
     document.getElementById('initialButtons').style.display = 'none';
-    document.getElementById('scoreboard').style.display = 'flex';
+    document.getElementById('gameBoard').style.display = 'flex';
     updatePlayerScoreList();
+    updateMatchOrderList();
     startNewMatch();
 }
 
@@ -57,7 +58,6 @@ function startNewMatch() {
         currentMatchScores[player] = 0;
     });
     updateCurrentMatch();
-    updateMatchOrder();
 }
 
 function incrementCurrentMatchScore(playerName) {
@@ -70,6 +70,7 @@ function incrementCurrentMatchScore(playerName) {
             document.getElementById('result').innerText = '';
             updatePlayerScoreList();
             updateMatchOrder();
+            updateMatchOrderList();
             startNewMatch();
         }, 2000);
     }
@@ -101,25 +102,24 @@ function updatePlayerScoreList() {
     });
 }
 
-function updateMatchOrder() {
+function updateMatchOrderList() {
     const matchOrderList = document.getElementById('matchOrderList');
     matchOrderList.innerHTML = '';
-    const matches = generateMatchOrders();
-    matches.forEach(match => {
+    for (let i = 0; i < players.length; i++) {
+        const player1 = players[i];
+        const player2 = players[(i + 1) % players.length];
         const li = document.createElement('li');
-        li.textContent = `${match[0]} vs ${match[1]}`;
+        li.textContent = `${player1} vs ${player2}`;
         matchOrderList.appendChild(li);
-    });
+    }
 }
 
-function generateMatchOrders() {
-    let matches = [];
-    for (let i = 0; i < players.length; i++) {
-        for (let j = i + 1; j < players.length; j++) {
-            matches.push([players[i], players[j]]);
-        }
+function updateMatchOrder() {
+    currentMatch[0] = (currentMatch[0] + 1) % players.length;
+    currentMatch[1] = (currentMatch[1] + 1) % players.length;
+    if (currentMatch[0] === currentMatch[1]) {
+        currentMatch[1] = (currentMatch[1] + 1) % players.length;
     }
-    return matches.slice(0, 3);
 }
 
 function resetScores() {
@@ -128,8 +128,7 @@ function resetScores() {
     currentMatchScores = {};
     currentMatch = [0, 1];
     document.getElementById('playerList').innerHTML = '';
-    document.getElementById('scoreboard').style.display = 'none';
-    document.getElementById('result').innerText = '';
+    document.getElementById('gameBoard').style.display = 'none';
     document.getElementById('initialSetup').style.display = 'block';
     document.getElementById('playerInputGroup').style.display = 'block';
     document.getElementById('playerListGroup').style.display = 'block';

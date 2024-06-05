@@ -7,45 +7,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Pool Score Tracker</h1>
-        <div class="input-group" id="initialSetup">
-            <label for="winBalls">Set Winning Balls: </label>
-            <input type="number" id="winBalls" value="5" min="1">
+    <h1>Pool Score Tracker</h1>
+    <div class="input-group" id="initialSetup">
+        <label for="winBalls">Set Winning Balls: </label>
+        <input type="number" id="winBalls" value="5" min="1">
+    </div>
+    <div class="player-input-group" id="playerInputGroup">
+        <input type="text" id="playerName" placeholder="Enter Player Name">
+        <button id="addPlayerButton">Add Player</button>
+    </div>
+    <div class="player-list" id="playerListGroup">
+        <h2>Players:</h2>
+        <ul id="playerList"></ul>
+    </div>
+    <div class="buttons" id="initialButtons">
+        <button class="start-button" id="startGameButton">Start Game</button>
+    </div>
+    
+    <div class="game-board" id="gameBoard" style="display: none;">
+        <div class="player-scores" id="playerScores">
+            <h2>Player Scores</h2>
+            <ul id="playerScoreList"></ul>
         </div>
-        <div class="player-input-group" id="playerInputGroup">
-            <input type="text" id="playerName" placeholder="Enter Player Name">
-            <button id="addPlayerButton">Add Player</button>
+        <div class="current-match" id="currentMatchContainer">
+            <h2>Current Match</h2>
+            <div id="currentMatch"></div>
+            <div class="result-group">
+                <p id="result"></p>
+            </div>
         </div>
-        <div class="player-list" id="playerListGroup">
-            <h2>Players:</h2>
-            <ul id="playerList"></ul>
-        </div>
-        <div class="buttons" id="initialButtons">
-            <button class="start-button" id="startGameButton">Start Game</button>
-        </div>
-        
-        <div class="scoreboard" id="scoreboard" style="display: none;">
-            <div class="scoreboard-section" id="playerContainer">
-                <h2>Players' Scores</h2>
-                <ul id="playerScoreList"></ul>
-            </div>
-            <div class="scoreboard-section" id="matchContainer">
-                <h2>Current Match</h2>
-                <div id="currentMatch"></div>
-                <div class="result-group">
-                    <p id="result"></p>
-                </div>
-            </div>
-            <div class="scoreboard-section" id="orderContainer">
-                <h2>Match Order</h2>
-                <ul id="matchOrderList"></ul>
-            </div>
-            <div class="buttons">
-                <button class="reset-button" id="resetButton">Reset</button>
-            </div>
+        <div class="match-order" id="matchOrderContainer">
+            <h2>Match Order</h2>
+            <ul id="matchOrderList"></ul>
         </div>
     </div>
+
     <script src="script.js" type="module"></script>
 </body>
 </html>

@@ -11,44 +11,27 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #3498db, #2980b9);
+    background: linear-gradient(to right, #2980b9, #3498db);
+    color: var(--primary-text-color);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: var(--primary-text-color);
-}
-
-.container {
-    background-color: var(--secondary-bg-color);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 900px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.container:hover {
-    transform: scale(1.05);
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-.input-group, .player-input-group, .player-list, .buttons, .scoreboard {
+.input-group, .player-input-group, .player-list, .buttons, .game-board {
     margin-bottom: 20px;
 }
 
 .input-group input, .player-input-group input {
-    width: 50px;
-    text-align: center;
     padding: 5px;
     border-radius: 5px;
     border: none;
-    margin-left: 10px;
     transition: background-color 0.3s ease;
 }
 
@@ -70,19 +53,18 @@ h1 {
     margin: 5px 0;
 }
 
-.score-button, .reset-button, .start-button {
+button {
     padding: 15px 25px;
     font-size: 18px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 10px;
     color: var(--button-text-color);
     background-color: var(--button-bg-color);
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.score-button:hover, .reset-button:hover, .start-button:hover {
+button:hover {
     background-color: var(--button-hover-bg-color);
     transform: scale(1.1);
 }
@@ -102,15 +84,29 @@ label {
     margin-bottom: 10px;
 }
 
-.scoreboard {
+.game-board {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.scoreboard-section {
+.player-scores, .current-match, .match-order {
     background-color: var(--secondary-bg-color);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 30%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.current-match .player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
