@@ -46,7 +46,7 @@ function startGame() {
     document.getElementById('playerInputGroup').style.display = 'none';
     document.getElementById('playerListGroup').style.display = 'none';
     document.getElementById('initialButtons').style.display = 'none';
-    document.getElementById('scoreboard').style.display = 'block';
+    document.getElementById('scoreboard').style.display = 'flex';
     updatePlayerScoreList();
     startNewMatch();
 }
@@ -57,6 +57,7 @@ function startNewMatch() {
         currentMatchScores[player] = 0;
     });
     updateCurrentMatch();
+    updateMatchOrder();
 }
 
 function incrementCurrentMatchScore(playerName) {
@@ -101,9 +102,14 @@ function updatePlayerScoreList() {
 }
 
 function updateMatchOrder() {
-    currentMatch = [(currentMatch[0] + 1) % players.length, (currentMatch[1] + 1) % players.length];
-    if (currentMatch[0] === currentMatch[1]) {
-        currentMatch[1] = (currentMatch[1] + 1) % players.length;
+    const matchOrderList = document.getElementById('matchOrderList');
+    matchOrderList.innerHTML = '';
+    for (let i = 0; i < players.length; i++) {
+        for (let j = i + 1; j < players.length; j++) {
+            const li = document.createElement('li');
+            li.textContent = `${players[i]} vs ${players[j]}`;
+            matchOrderList.appendChild(li);
+        }
     }
 }
 

@@ -25,7 +25,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 320px;
+    width: 800px;
     text-align: center;
     transition: all 0.3s ease;
 }
@@ -61,12 +61,12 @@ h1 {
     margin-right: 10px;
 }
 
-.player-list ul, #playerScoreList {
+.player-list ul, #playerScoreList, #matchOrderList {
     list-style: none;
     padding: 0;
 }
 
-.player-list li, #playerScoreList li {
+.player-list li, #playerScoreList li, #matchOrderList li {
     margin: 5px 0;
 }
 
@@ -100,4 +100,18 @@ h1 {
 label {
     font-size: 18px;
     margin-bottom: 10px;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.scoreboard-section {
+    background-color: var(--secondary-bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
 }
