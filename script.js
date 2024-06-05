@@ -3,6 +3,7 @@ let totalScores = {};
 let currentMatchScores = {};
 let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
+let matchHistory = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addPlayerButton').addEventListener('click', addPlayer);
@@ -66,11 +67,13 @@ function incrementCurrentMatchScore(playerName) {
     if (currentMatchScores[playerName] >= winBalls) {
         totalScores[playerName]++;
         document.getElementById('result').innerText = `${playerName} Wins this round!`;
+        matchHistory.push(`${players[currentMatch[0]]} vs ${players[currentMatch[1]]}: ${playerName} won`);
         setTimeout(() => {
             document.getElementById('result').innerText = '';
             updatePlayerScoreList();
             updateMatchOrder();
             updateMatchOrderList();
+            updateHistoryList();
             startNewMatch();
         }, 2000);
     }
@@ -114,6 +117,16 @@ function updateMatchOrderList() {
     }
 }
 
+function updateHistoryList() {
+    const historyList = document.getElementById('historyList');
+    historyList.innerHTML = '';
+    matchHistory.forEach(match => {
+        const li = document.createElement('li');
+        li.textContent = match;
+        historyList.appendChild(li);
+    });
+}
+
 function updateMatchOrder() {
     currentMatch[0] = (currentMatch[0] + 1) % players.length;
     currentMatch[1] = (currentMatch[1] + 1) % players.length;
@@ -127,12 +140,14 @@ function resetScores() {
     totalScores = {};
     currentMatchScores = {};
     currentMatch = [0, 1];
+    matchHistory = [];
     document.getElementById('playerList').innerHTML = '';
     document.getElementById('gameBoard').style.display = 'none';
     document.getElementById('initialSetup').style.display = 'block';
     document.getElementById('playerInputGroup').style.display = 'block';
     document.getElementById('playerListGroup').style.display = 'block';
     document.getElementById('initialButtons').style.display = 'block';
+    document.getElementById('historyList').innerHTML = '';
 }
 
 window.incrementCurrentMatchScore = incrementCurrentMatchScore;

@@ -44,12 +44,12 @@ h1 {
     margin-right: 10px;
 }
 
-.player-list ul, #playerScoreList, #matchOrderList {
+.player-list ul, #playerScoreList, #matchOrderList, #historyList {
     list-style: none;
     padding: 0;
 }
 
-.player-list li, #playerScoreList li, #matchOrderList li {
+.player-list li, #playerScoreList li, #matchOrderList li, #historyList li {
     margin: 5px 0;
 }
 
@@ -92,12 +92,12 @@ label {
     box-sizing: border-box;
 }
 
-.player-scores, .current-match, .match-order {
+.player-scores, .current-match, .match-order, .history {
     background-color: var(--secondary-bg-color);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 30%;
+    width: 23%;
 }
 
 h2 {
