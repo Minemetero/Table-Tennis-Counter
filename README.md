@@ -1,3 +1,3 @@
-Not available to use yet, there is toooooooo many bug
+The code is running, well, good！
 
-暂时还不能用，满天飞的bug
+凑活凑活用用吧
