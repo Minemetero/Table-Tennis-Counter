@@ -134,3 +134,5 @@ function resetScores() {
     document.getElementById('playerListGroup').style.display = 'block';
     document.getElementById('initialButtons').style.display = 'block';
 }
+
+window.incrementCurrentMatchScore = incrementCurrentMatchScore;
