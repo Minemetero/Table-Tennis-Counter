@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #2980b9, #3498db);
+    background: linear-gradient(to bottom right, #039afe, #4293c9);
     color: var(--primary-text-color);
     display: flex;
     flex-direction: column;

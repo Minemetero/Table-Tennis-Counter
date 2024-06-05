@@ -68,15 +68,29 @@ function incrementCurrentMatchScore(playerName) {
         totalScores[playerName]++;
         document.getElementById('result').innerText = `${playerName} Wins this round!`;
         matchHistory.push(`${players[currentMatch[0]]} vs ${players[currentMatch[1]]}: ${playerName} won`);
+        disableScoreButtons();
         setTimeout(() => {
             document.getElementById('result').innerText = '';
             updatePlayerScoreList();
             updateMatchOrder();
             updateMatchOrderList();
             updateHistoryList();
+            enableScoreButtons();
             startNewMatch();
         }, 2000);
     }
+}
+
+function disableScoreButtons() {
+    document.querySelectorAll('.score-button').forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function enableScoreButtons() {
+    document.querySelectorAll('.score-button').forEach(button => {
+        button.disabled = false;
+    });
 }
 
 function updateCurrentMatch() {
