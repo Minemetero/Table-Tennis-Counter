@@ -4,10 +4,15 @@ let currentMatchScores = {};
 let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
 
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.start-button').addEventListener('click', startGame);
+    document.querySelector('.reset-button').addEventListener('click', resetScores);
+});
+
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
-    if (playerName === '') {
-        alert('Please enter a valid player name');
+    if (playerName === '' || players.includes(playerName)) {
+        alert('Please enter a unique valid player name');
         return;
     }
     players.push(playerName);
