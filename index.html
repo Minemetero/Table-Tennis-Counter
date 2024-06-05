@@ -26,22 +26,20 @@
         </div>
         
         <div class="scoreboard" id="scoreboard" style="display: none;">
-            <div class="scoreboard-inner">
-                <div class="scoreboard-section" id="playerContainer">
-                    <h2>Players' Scores</h2>
-                    <ul id="playerScoreList"></ul>
+            <div class="scoreboard-section" id="playerContainer">
+                <h2>Players' Scores</h2>
+                <ul id="playerScoreList"></ul>
+            </div>
+            <div class="scoreboard-section" id="matchContainer">
+                <h2>Current Match</h2>
+                <div id="currentMatch"></div>
+                <div class="result-group">
+                    <p id="result"></p>
                 </div>
-                <div class="scoreboard-section" id="matchContainer">
-                    <h2>Current Match</h2>
-                    <div id="currentMatch"></div>
-                    <div class="result-group">
-                        <p id="result"></p>
-                    </div>
-                </div>
-                <div class="scoreboard-section" id="orderContainer">
-                    <h2>Match Order</h2>
-                    <ul id="matchOrderList"></ul>
-                </div>
+            </div>
+            <div class="scoreboard-section" id="orderContainer">
+                <h2>Match Order</h2>
+                <ul id="matchOrderList"></ul>
             </div>
             <div class="buttons">
                 <button class="reset-button" id="resetButton">Reset</button>

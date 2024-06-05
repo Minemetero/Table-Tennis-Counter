@@ -103,13 +103,8 @@ label {
 }
 
 .scoreboard {
-    display: none;
-}
-
-.scoreboard-inner {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
 }
 
 .scoreboard-section {
