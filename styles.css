@@ -87,7 +87,7 @@ label {
 .game-board {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
     padding: 20px;
     box-sizing: border-box;
 }

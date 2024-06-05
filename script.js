@@ -60,7 +60,7 @@ function startNewMatch() {
     updateCurrentMatch();
 }
 
-function incrementScore(playerName) {
+function incrementCurrentMatchScore(playerName) {
     currentMatchScores[playerName]++;
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
@@ -68,35 +68,28 @@ function incrementScore(playerName) {
         document.getElementById('result').innerText = `${playerName} Wins this round!`;
         setTimeout(() => {
             document.getElementById('result').innerText = '';
-            endMatch();
+            updatePlayerScoreList();
+            updateMatchOrder();
+            updateMatchOrderList();
+            startNewMatch();
         }, 2000);
     }
 }
 
 function updateCurrentMatch() {
     const match = document.getElementById('currentMatch');
-    match.innerHTML = '';
-    players.forEach(player => {
-        const score = currentMatchScores[player] || 0;
-        const div = document.createElement('div');
-        div.className = 'player';
-        div.innerHTML = `
-            <label>${player}: <span>${score}</span></label>
-            <button class="score-button" onclick="incrementScore('${player}')">Score</button>
-        `;
-        match.appendChild(div);
-    });
-}
-
-function endMatch() {
-    Object.keys(currentMatchScores).forEach(player => {
-        totalScores[player] = totalScores[player] || 0;
-        totalScores[player] += currentMatchScores[player];
-    });
-    updatePlayerScoreList();
-    updateMatchOrder();
-    updateMatchOrderList();
-    startNewMatch();
+    const player1 = players[currentMatch[0]];
+    const player2 = players[currentMatch[1]];
+    match.innerHTML = `
+        <div class="player">
+            <label>${player1}: <span>${currentMatchScores[player1]}</span></label>
+            <button class="score-button" onclick="incrementCurrentMatchScore('${player1}')">Score</button>
+        </div>
+        <div class="player">
+            <label>${player2}: <span>${currentMatchScores[player2]}</span></label>
+            <button class="score-button" onclick="incrementCurrentMatchScore('${player2}')">Score</button>
+        </div>
+    `;
 }
 
 function updatePlayerScoreList() {
