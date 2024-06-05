@@ -8,7 +8,6 @@ let matchHistory = [];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addPlayerButton').addEventListener('click', addPlayer);
     document.getElementById('startGameButton').addEventListener('click', startGame);
-    document.getElementById('resetButton').addEventListener('click', resetScores);
 });
 
 function addPlayer() {

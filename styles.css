@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #039afe, #4293c9);
+    background: linear-gradient(to bottom right, #2980b9, #3498db);
     color: var(--primary-text-color);
     display: flex;
     flex-direction: column;
@@ -92,12 +92,30 @@ label {
     box-sizing: border-box;
 }
 
+.left-panel, .right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 23%;
+}
+
+.center-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48%;
+}
+
 .player-scores, .current-match, .match-order, .history {
     background-color: var(--secondary-bg-color);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 23%;
+}
+
+.current-match {
+    width: 100%;
+    padding: 40px;
 }
 
 h2 {
