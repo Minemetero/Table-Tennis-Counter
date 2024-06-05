@@ -25,7 +25,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 800px;
+    width: 900px;
     text-align: center;
     transition: all 0.3s ease;
 }
@@ -103,6 +103,10 @@ label {
 }
 
 .scoreboard {
+    display: none;
+}
+
+.scoreboard-inner {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
