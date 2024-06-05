@@ -1,9 +1,9 @@
 :root {
-    --primary-bg-color: #2c3e50;
-    --secondary-bg-color: #34495e;
+    --primary-bg-color: #2980b9;
+    --secondary-bg-color: #3498db;
     --primary-text-color: #ecf0f1;
     --button-bg-color: #ecf0f1;
-    --button-text-color: #2c3e50;
+    --button-text-color: #2980b9;
     --button-hover-bg-color: #bdc3c7;
     --reset-button-bg-color: #e74c3c;
     --reset-button-hover-bg-color: #c0392b;
@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #34495e, #2c3e50);
+    background: linear-gradient(to right, #3498db, #2980b9);
     display: flex;
     justify-content: center;
     align-items: center;

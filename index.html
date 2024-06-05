@@ -15,14 +15,14 @@
         </div>
         <div class="player-input-group" id="playerInputGroup">
             <input type="text" id="playerName" placeholder="Enter Player Name">
-            <button onclick="addPlayer()">Add Player</button>
+            <button id="addPlayerButton">Add Player</button>
         </div>
         <div class="player-list" id="playerListGroup">
             <h2>Players:</h2>
             <ul id="playerList"></ul>
         </div>
         <div class="buttons" id="initialButtons">
-            <button class="start-button" onclick="startGame()">Start Game</button>
+            <button class="start-button" id="startGameButton">Start Game</button>
         </div>
         
         <div class="scoreboard" id="scoreboard" style="display: none;">
@@ -37,7 +37,7 @@
                     <p id="result"></p>
                 </div>
                 <div class="buttons">
-                    <button class="reset-button" onclick="resetScores()">Reset</button>
+                    <button class="reset-button" id="resetButton">Reset</button>
                 </div>
             </div>
         </div>

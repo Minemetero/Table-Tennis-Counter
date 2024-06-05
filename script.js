@@ -5,8 +5,9 @@ let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.start-button').addEventListener('click', startGame);
-    document.querySelector('.reset-button').addEventListener('click', resetScores);
+    document.getElementById('addPlayerButton').addEventListener('click', addPlayer);
+    document.getElementById('startGameButton').addEventListener('click', startGame);
+    document.getElementById('resetButton').addEventListener('click', resetScores);
 });
 
 function addPlayer() {
