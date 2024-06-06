@@ -46,7 +46,7 @@ function startGame() {
     document.getElementById('playerInputGroup').style.display = 'none';
     document.getElementById('playerListGroup').style.display = 'none';
     document.getElementById('initialButtons').style.display = 'none';
-    document.getElementById('gameBoard').style.display = 'flex';
+    document.getElementById('gameBoard').style.display = 'grid';
     updatePlayerScoreList();
     updateMatchOrderList();
     startNewMatch();
