@@ -1,7 +1,8 @@
-:root {
+:root { /* Color Control Center */
     --primary-bg-color: #2980b9;
     --secondary-bg-color: #3498db;
     --primary-text-color: #ecf0f1;
+    --primary-body-color: linear-gradient(to bottom right, #2980b9, #3498db);
     --button-bg-color: #ecf0f1;
     --button-text-color: #2980b9;
     --button-hover-bg-color: #bdc3c7;
@@ -11,8 +12,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #2980b9, #3498db);
-    color: var(--primary-text-color);
+    color: var(--primary-body-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,13 +73,13 @@ button:hover {
     padding: 20px 30px;
 }
 
-.reset-button {
+.reset-button { /* Not using */
     width: 100%;
     background-color: var(--reset-button-bg-color);
     color: var(--primary-text-color);
 }
 
-.reset-button:hover {
+.reset-button:hover { /* Not using */
     background-color: var(--reset-button-hover-bg-color);
 }
 
