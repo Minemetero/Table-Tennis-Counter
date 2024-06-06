@@ -1,8 +1,7 @@
-:root { /* Color Control Center */
+:root {
     --primary-bg-color: #2980b9;
     --secondary-bg-color: #3498db;
     --primary-text-color: #ecf0f1;
-    --primary-body-color: linear-gradient(to bottom right, #2980b9, #3498db);
     --button-bg-color: #ecf0f1;
     --button-text-color: #2980b9;
     --button-hover-bg-color: #bdc3c7;
@@ -12,7 +11,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    color: var(--primary-body-color);
+    background: linear-gradient(to bottom right, #2980b9, #3498db);
+    color: var(--primary-text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,15 +71,16 @@ button:hover {
 
 .score-button {
     padding: 20px 30px;
+    font-size: 24px;
 }
 
-.reset-button { /* Not using */
+.reset-button {
     width: 100%;
     background-color: var(--reset-button-bg-color);
     color: var(--primary-text-color);
 }
 
-.reset-button:hover { /* Not using */
+.reset-button:hover {
     background-color: var(--reset-button-hover-bg-color);
 }
 
@@ -104,16 +105,13 @@ label {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
+    max-height: 300px;
 }
 
 .current-match {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
     padding: 40px;
-}
-
-.match-order, .history {
-    max-height: 300px;
 }
 
 h2 {
