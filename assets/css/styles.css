@@ -1,0 +1,139 @@
+:root {
+    --reset-button-bg-color: #e74c3c;
+    --reset-button-hover-bg-color: #c0392b;
+}
+* {
+    max-width: none;
+    scrollbar-width: 0;
+    scrollbar-color: none;
+    scroll-behavior: smooth;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+}
+s-page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex: 1;
+}
+
+#top-loading {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+#top-bar, #main {
+    visibility: hidden;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.form-group {
+    margin: 5px;
+}
+#setup {
+    min-width: 40%;
+    padding: 10px;
+    display: block;
+}
+s-text-field {
+    display: block;
+}
+
+.player-list ul, #playerScoreList, #matchOrderList, #historyList {
+    list-style: none;
+    padding: 0;
+}
+
+.player-list li, #playerScoreList li, #matchOrderList li, #historyList li {
+    margin: 5px 0;
+}
+
+.score-button {
+    padding: 20px 30px;
+    font-size: 24px;
+}
+
+.reset-button {
+    width: 100%;
+    background-color: var(--reset-button-bg-color);
+    color: var(--primary-text-color);
+}
+
+.reset-button:hover {
+    background-color: var(--reset-button-hover-bg-color);
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    min-width: 50%;
+    max-height: 80%;
+    min-height: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: stretch;
+}
+.game-board:not(.active) {
+    display: none;
+}
+.game-board>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.game-board>div>s-card {
+    flex: 1;
+    margin: 5px;
+}
+
+.player-scores, .current-match, .match-order, .history {
+    padding: 20px;
+    border-radius: 12px;
+    overflow-y: auto;
+}
+h2 {
+    margin-top: 0;
+}
+
+.current-match .player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
