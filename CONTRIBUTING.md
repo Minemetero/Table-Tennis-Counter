@@ -18,7 +18,7 @@ Submit a pull request to the main repository.
 The commit message follows the [Angular team commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines), which are:  
 
 ```
-<type>(<scope>): <subject>
+<type>: <subject>
 <BLANK LINE>
 <body>
 <BLANK LINE>
@@ -31,7 +31,6 @@ You can install [this VSCode extension](https://marketplace.visualstudio.com/ite
 ### Tag Meanings
 
 #### type
-
 Must be one of the following types:  
 |     Type     |                                 Explanation                                 |
 |--------------|-----------------------------------------------------------------------------|
@@ -48,27 +47,10 @@ Must be one of the following types:
 | 🐳 chore    | Change build process, or add dependencies, tools, etc.                      |
 | ↩ revert    | Rollback to the previous version                                            |
 
-#### scope
-**Optional.**  
-Scope.  
-The scope can be anything specifying the place of the commit change. For example, `$location`, `$browser`, `$compile`, `$rootScope`, `ngHref`, `ngClick`, `ngView`, etc.  
-When the change affects multiple scopes, use `*`.  
-
 #### subject
 Subject.  
-The subject contains a brief description of the change:  
-Use the imperative mood: "change" instead of "changed" or "changes"  
-~~Do not capitalize the first letter~~ Actually, you can capitalize the first letter  
-Do not end with a period (.)  
-
-#### BLANK LINE
-Blank line.  
-
-#### body
-Body.  
-Just like in the subject, use the imperative mood: "change" instead of "changed" or "changes". The body should include the motivation for the change and compare it to the previous behavior.  
+The subject contains a brief description of the change.  
 
 #### footer
 Footer.  
 The footer should contain any information about major changes and is also the location to reference the GitHub Issue that this commit closes.  
-Major changes should start with `BREAKING CHANGE:`, followed by a space or two newlines. Then, the rest of the commit message will be used for this purpose.  
