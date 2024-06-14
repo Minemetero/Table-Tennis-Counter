@@ -100,8 +100,10 @@ label {
 .game-board {
     display: flex;
     flex-direction: row;
+    width: 80%;
     max-width: 90%;
     min-width: 50%;
+    height: 90%;
     max-height: 80%;
     min-height: 40%;
     padding: 20px;
