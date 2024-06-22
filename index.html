@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Table Tennis Counter</title>
+    <title data-lang="ui.title">Table Tennis Counter</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
@@ -11,16 +11,32 @@
         <s-linear-progress id="top-loading" indeterminate="true"></s-linear-progress>
         <s-top-app-bar id="top-bar">
             <!--标题-->
-            <div slot="headline">Table Tennis Counter</div>
+            <div slot="headline" data-lang="ui.title">Table Tennis Counter</div>
             <!--右侧操作按钮-->
-            <s-tooltip slot="action">
+            <!-- Language -->
+            <s-menu slot="action" id="language-menu">
+                <s-tooltip slot="trigger" data-lang="ui.topbar.language">
+                    <s-icon-button slot="trigger">
+                        <s-icon>
+                            <svg data-v-12471abb="" viewBox="0 -960 960 960">
+                                <path data-v-12471abb="" d="m476-80 182-480h84L924-80h-84l-43-122H603L560-80h-84ZM160-200l-56-56 
+                                202-202q-35-35-63.5-80T190-640h84q20 39 40 68t48 58q33-33 
+                                68.5-92.5T484-720H40v-80h280v-80h80v80h280v80H564q-21 72-63 
+                                148t-83 116l96 98-30 82-122-125-202 201Zm468-72h144l-72-204-72 204Z">
+                                </path>
+                            </svg>
+                        </s-icon>
+                    </s-icon-button>
+                </s-tooltip>
+            </s-menu>
+            <!-- Theme -->
+            <s-tooltip slot="action" data-lang="ui.topbar.theme">
                 <s-icon-button slot="trigger" onclick="e_toggleTheme()">
                     <s-icon type="light_mode" id="theme-icon"></s-icon>
                 </s-icon-button>
-                Theme
             </s-tooltip>
-            
-            <s-tooltip slot="action">
+            <!-- GitHub -->
+            <s-tooltip slot="action" data-lang="ui.topbar.github">
                 <s-icon-button slot="trigger" onclick="e_gotoGitHub()">
                     <s-icon>
                         <svg viewBox="0 0 1024 1024">
@@ -38,44 +54,50 @@
                         </svg>
                     </s-icon>
                 </s-icon-button>
-                GitHub
             </s-tooltip>
         </s-top-app-bar>
         <main id="main">
             <div id="setup">
                 <div class="form-group">
-                    <s-text-field label="Set Winning Balls">
+                    <!-- Winning Balls -->
+                    <s-text-field data-lang="ui.setup.winningBalls" data-lang-prop="label">
                         <input type="text" id="winBalls" value="5">
                     </s-text-field>
                 </div>
                 <div class="form-group" id="playerInputGroup">
-                    <s-text-field label="Player Name">
+                    <!-- Player Name -->
+                    <s-text-field data-lang="ui.setup.playerName" data-lang-prop="label">
                         <input type="text" id="playerName" />
-                        <s-button type="text" slot="end" onclick="addPlayer()">
+                        <!-- Add Player -->
+                        <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
                             <s-icon slot="start" type="add"></s-icon>
-                            Add Player
                         </s-button>
                     </s-text-field>
                 </div>
                 <div class="player-list" id="playerListGroup">
-                    <h2>Players:</h2>
+                    <h2 data-lang="ui.setup.playerListHint"></h2>
                     <ul id="playerList"></ul>
                 </div>
-                <s-button class="start-button" id="startGameButton" onclick="startGame()">Start Game</s-button>
+                <!-- Start Game -->
+                <!-- 我也不知道为啥，这里必须手动指定data-lang-prop -->
+                <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText" onclick="startGame()"></s-button>
             </div>
             <div class="game-board" id="gameBoard">
                 <div id="board-left">
                     <s-card class="player-scores" id="playerScores">
-                        <h2>Player Scores</h2>
+                        <!-- Player Scores -->
+                        <h2 data-lang="ui.gameBoard.playerScores"></h2>
                         <ul id="playerScoreList"></ul>
                     </s-card><s-card class="history" id="historyContainer">
-                        <h2>Match History</h2>
+                        <!-- Match History -->
+                        <h2 data-lang="ui.gameBoard.matchHistory"></h2>
                         <ul id="historyList"></ul>
                     </s-card>
                 </div>
                 <div id="board-center">
                     <s-card class="current-match" id="currentMatchContainer">
-                        <h2>Current Match</h2>
+                        <!-- Current Match -->
+                        <h2 data-lang="ui.gameBoard.currentMatch"></h2>
                         <div id="currentMatch"></div>
                         <div class="result-group">
                             <p id="result"></p>
@@ -84,7 +106,8 @@
                 </div>
                 <div id="board-right">
                     <s-card class="match-order" id="matchOrderContainer">
-                        <h2>Match Order</h2>
+                        <!-- Match Order -->
+                        <h2 data-lang="ui.gameBoard.matchOrder"></h2>
                         <ul id="matchOrderList"></ul>
                     </s-card>
                 </div>
@@ -97,10 +120,11 @@
         </div>
     </s-page>
     
-
-    <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/ui.js"></script>
+    <script defer src="./assets/js/utils.js"></script>
+    <script defer src="./assets/js/lang.js"></script>
+    <script defer src="./assets/js/script.js"></script>
+    <script defer src="./assets/js/ui.js"></script>
     <!-- 引入Sober界面库 -->
-    <script async id="sober" src="https://unpkg.com/sober/dist/sober.min.js"></script>
+    <script src="https://unpkg.com/sober/dist/sober.min.js"></script>
 </body>
 </html>
