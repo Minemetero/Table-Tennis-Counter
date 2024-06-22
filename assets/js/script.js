@@ -5,14 +5,10 @@ let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
 let matchHistory = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 虽然但是，onclick：？
-});
-
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
     if (playerName === '' || players.includes(playerName)) {
-        showSnackBar('Please enter a unique valid player name', 'PlayerNameError');
+        showSnackBar(lang('ui.tooltip.playerNameError'), 'PlayerNameError');
         return;
     }
     players.push(playerName);
@@ -36,13 +32,13 @@ function updatePlayerList() {
 function startGame() {
     showLoading();
     if (players.length < 2) {
-        showSnackBar('Please add at least two players', 'PlayerAmountError');
+        showSnackBar(lang('ui.tooltip.playerAmountError'), 'PlayerAmountError');
         hideLoading();
         return;
     }
     winBalls = parseInt(document.getElementById('winBalls').value);
     if (isNaN(winBalls) || winBalls <= 0) {
-        showSnackBar('Please enter a valid number of winning balls', 'WinningBallsError');
+        showSnackBar(lang('ui.tooltip.winningBallsError'), 'WinningBallsError');
         hideLoading();
         return;
     }
@@ -69,8 +65,8 @@ function incrementCurrentMatchScore(playerName) {
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
         totalScores[playerName]++;
-        document.getElementById('result').innerText = `${playerName} Wins this round!`;
-        matchHistory.push(`${players[currentMatch[0]]} vs ${players[currentMatch[1]]}: ${playerName} won`);
+        document.getElementById('result').innerText = lang('ui.gameBoard.winMessage', playerName);
+        matchHistory.push(lang('ui.gameBoard.matchHistory.item', players[currentMatch[0]], players[currentMatch[1]], playerName));
         disableScoreButtons();
         setTimeout(() => {
             document.getElementById('result').innerText = '';
@@ -103,11 +99,15 @@ function updateCurrentMatch() {
     match.innerHTML = `
         <div class="player">
             <label>${player1}: <span>${currentMatchScores[player1]}</span></label>
-            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player1}')">Score</s-button>
+            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player1}')">
+                ${lang('ui.gameBoard.score')}
+            </s-button>
         </div>
         <div class="player">
             <label>${player2}: <span>${currentMatchScores[player2]}</span></label>
-            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player2}')">Score</s-button>
+            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player2}')">
+                ${lang('ui.gameBoard.score')}
+            </s-button>
         </div>
     `;
 }
@@ -129,7 +129,7 @@ function updateMatchOrderList() {
         const player1 = players[i];
         const player2 = players[(i + 1) % players.length];
         const li = document.createElement('li');
-        li.textContent = `${player1} vs ${player2}`;
+        li.textContent = lang('ui.gameBoard.matchOrder.item', player1, player2);
         matchOrderList.appendChild(li);
     }
 }

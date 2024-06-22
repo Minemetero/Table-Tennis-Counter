@@ -9,6 +9,7 @@ The Pool Score Tracker is a web application that allows you to track scores for 
 + Show match order  
 + Maintain match history  
 + Responsive design with a user-friendly interface  
++ Multi Language Support  
   
 ### Usage  
 + **Set Winning Balls:**  
@@ -38,4 +39,4 @@ The Pool Score Tracker is a web application that allows you to track scores for 
 [Contribution Guide [English]](./CONTRIBUTING.md) | [贡献指南 [中文]](./docs/CONTRIBUTING.zh-CN.md)  
   
 ## License  
-This project is licensed under the Apache-2.0 License. See the LICENSE file for details.  
+This project is licensed under the Apache-2.0 License. See the [LICENSE](./LICENSE) file for details.  

@@ -1,15 +1,21 @@
 
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
-    let pageEl = document.getElementById('page');
-    
-    document.getElementById('sober').addEventListener('load', function () {
-        e_toggleTheme('auto')
-        setTimeout(function () { // 等Sober执行完
-            document.getElementById('main').style.visibility = 'visible';
-            document.getElementById('top-bar').style.visibility = 'visible';
-            hideLoading();
-        }, 500);
-    });
+    e_toggleTheme(readConfig('theme', 'auto'));
+    setTimeout(function () { // 等Sober执行完
+        document.getElementById('main').style.visibility = 'visible';
+        document.getElementById('top-bar').style.visibility = 'visible';
+        hideLoading();
+    }, 500);
+    currentLanguage = readConfig('language', 'en-US');
+    let langList = getLanguageList();
+    let languageMenuEl = document.getElementById('language-menu');
+    langList.forEach(function(currentValue) {
+        languageMenuEl.innerHTML += `
+<s-menu-item onclick="setLanguage('${currentValue}')">
+    ${langForce(currentValue, 'language.LanguageName')}
+</s-menu-item>`;
+    })
+    updateElementLanguages();
 });
 
 function showSnackBar(message, id = 'snackbar') {
@@ -59,23 +65,22 @@ function e_toggleTheme(theme) {
     134v186H614L480-28Zm0-112 100-100h140v-140l100-100-100-100v-140H580L480-820 
     380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"></path>
 </svg>`;
-            showSnackBar('Theme set to auto', 'Theme');
             break;
         case 'light':
             pageEl.theme = 'light';
             themeIconEl.type = 'light_mode';
             themeIconEl.innerHTML = '';
-            showSnackBar('Theme set to light', 'Theme');
             break;
         case 'dark':
             pageEl.theme = 'dark';
             themeIconEl.type = 'dark_mode';
             themeIconEl.innerHTML = '';
-            showSnackBar('Theme set to dark', 'Theme');
             break;
-    } 
+    }
+    writeConfig('theme', theme);
+    showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
 }
 function e_gotoGitHub() {
-    showSnackBar('Issues and PRs are welcome!!!', 'RepoTips');
+    showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
 }

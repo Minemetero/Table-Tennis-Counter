@@ -7,7 +7,6 @@ Welcome your contributions! Please follow these guidelines:
 Fork the repository.  
 Create a new branch for your feature or bug fix.  
 Write your code for the changes.  
-<!-- Use [Prettier](https://prettier.io) to format your code.   -->
 Commit your changes with a descriptive message.  
 **Note: The commit message _must_ follow the [format below](#commit-message-format)**  
 Push your branch to your fork.  
@@ -54,3 +53,7 @@ The subject contains a brief description of the change.
 #### footer
 Footer.  
 The footer should contain any information about major changes and is also the location to reference the GitHub Issue that this commit closes.  
+
+## Hint
+- Use [Prettier](https://prettier.io) to format your code.
+- Never use hard-coded values. Use language file ([assets/js/lang.js](./assets/js/lang.js)) instead.
