@@ -31,6 +31,34 @@ const languages = {
         'ui.tooltip.winningBallsError': 'Please enter a valid number of winning balls',
         'ui.tooltip.repoTip': 'Issues and PRs are welcome!!!',
     },
+    'zh-CN': {
+        'language.LanguageName': '简体中文',
+        'ui.title': '乒乓球计数器',
+        'ui.theme.themeName.auto': '自动',
+        'ui.theme.themeName.light': '亮色',
+        'ui.theme.themeName.dark': '暗色',
+        'ui.topbar.language': '语言',
+        'ui.topbar.theme': '主题',
+        'ui.topbar.github': 'GitHub',
+        'ui.setup.winningBalls': '设置制胜球数',
+        'ui.setup.playerName': '玩家名',
+        'ui.setup.addPlayer': '添加玩家',
+        'ui.setup.playerListHint': '玩家:',
+        'ui.setup.startGame': '开始比赛',
+        'ui.gameBoard.playerScores': '玩家分数',
+        'ui.gameBoard.matchHistory': '比赛历史',
+        'ui.gameBoard.currentMatch': '当前比赛',
+        'ui.gameBoard.matchOrder': '比赛顺序',
+        'ui.gameBoard.score': '得分',
+        'ui.gameBoard.winMessage': '{0} 本轮获胜！',
+        'ui.gameBoard.matchHistory.item': '{0} vs {1}: {2} 获胜',
+        'ui.gameBoard.matchOrder.item': '{0} vs {1}',
+        'ui.tooltip.themeSetTo': '主题已设为 {0}',
+        'ui.tooltip.playerNameError': '请填入唯一且有效的玩家名',
+        'ui.tooltip.playerAmountError': '请添加至少两个玩家',
+        'ui.tooltip.winningBallsError': '请填入有效的制胜球数',
+        'ui.tooltip.repoTip': '欢迎 Issue 和 PR！！！',
+    },
 };
 /**
  * 当前语言
@@ -53,8 +81,8 @@ var currentLanguage = 'en-US'; // 这里得用var定义全局变量
  */
 function getLanguageList() {
     let list = [];
-    for (let lang in languages) {
-        list.push(lang);
+    for (let language in languages) {
+        list.push(language);
     }
     return list;
 }
@@ -82,7 +110,7 @@ function lang(key, ...args) {
  */
 function langForce(lang, key, ...args) {
     if (
-        typeof languages[lang] != 'string' ||
+        typeof languages[lang] != 'object' ||
         typeof languages[lang][key] != 'string'
     ) {
         lang = 'en-US';

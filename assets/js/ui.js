@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick�
         hideLoading();
     }, 500);
     currentLanguage = readConfig('language', 'en-US');
+    document.documentElement.lang = currentLanguage;
     let langList = getLanguageList();
     let languageMenuEl = document.getElementById('language-menu');
     langList.forEach(function(currentValue) {
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick�
 <s-menu-item onclick="setLanguage('${currentValue}')">
     ${langForce(currentValue, 'language.LanguageName')}
 </s-menu-item>`;
-    })
+    });
     updateElementLanguages();
 });
 
