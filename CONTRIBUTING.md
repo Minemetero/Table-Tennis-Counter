@@ -52,7 +52,7 @@ The subject contains a brief description of the change.
 
 #### footer
 Footer.  
-The footer should contain any information about major changes and is also the location to reference the GitHub Issue that this commit closes.  
+The footer should contain information about major changes and is also the location to reference the GitHub Issue that this commit closes.  
 
 ## Hint
 - Use [Prettier](https://prettier.io) to format your code.

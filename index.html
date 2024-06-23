@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-lang="ui.title">Table Tennis Counter</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
+    <!-- 既然使用defer了，就把JS放到前面引入，让浏览器早点开始加载，提高加载速度 -->
+    <!-- 引入Sober界面库 -->
+    <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
+    <script defer src="https://unpkg.com/sober/dist/sober.min.js"></script>
+    <script defer src="./assets/js/utils.js"></script>
+    <script defer src="./assets/js/lang.js"></script>
+    <script defer src="./assets/js/script.js"></script>
+    <script defer src="./assets/js/ui.js"></script>
 </head>
 <body>
     <s-page id="page" theme="auto">
@@ -75,7 +83,7 @@
                     </s-text-field>
                 </div>
                 <div class="player-list" id="playerListGroup">
-                    <h2 data-lang="ui.setup.playerListHint"></h2>
+                    <h2 id="playerListTitle" data-lang="ui.setup.playerListHint"></h2>
                     <ul id="playerList"></ul>
                 </div>
                 <!-- Start Game -->
@@ -119,12 +127,5 @@
             </s-snackbar>
         </div>
     </s-page>
-    
-    <script defer src="./assets/js/utils.js"></script>
-    <script defer src="./assets/js/lang.js"></script>
-    <script defer src="./assets/js/script.js"></script>
-    <script defer src="./assets/js/ui.js"></script>
-    <!-- 引入Sober界面库 -->
-    <script src="https://unpkg.com/sober/dist/sober.min.js"></script>
 </body>
 </html>

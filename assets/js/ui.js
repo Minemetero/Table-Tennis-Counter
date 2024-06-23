@@ -1,6 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
-    e_toggleTheme(readConfig('theme', 'auto'));
     setTimeout(function () { // 等Sober执行完
         document.getElementById('main').style.visibility = 'visible';
         document.getElementById('top-bar').style.visibility = 'visible';
@@ -8,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick�
     }, 500);
     currentLanguage = readConfig('language', 'en-US');
     document.documentElement.lang = currentLanguage;
+    e_toggleTheme(readConfig('theme', 'auto'));
     let langList = getLanguageList();
     let languageMenuEl = document.getElementById('language-menu');
     langList.forEach(function(currentValue) {
