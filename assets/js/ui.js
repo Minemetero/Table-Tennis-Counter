@@ -81,7 +81,24 @@ function e_toggleTheme(theme) {
     writeConfig('theme', theme);
     showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
 }
+
+function e_reloadPage() {
+    showLoading();
+    window.location.reload();
+}
+
 function e_gotoGitHub() {
     showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
+}
+
+function e_boardSelectChange() {
+    let selectedIndex = document.getElementById('gameBoardSelector').selectedIndex;
+    let boards = document.querySelectorAll('#gameBoard>div');
+    boards.forEach(function(currentValue) {
+        currentValue.classList.remove('active');
+    });
+    if (selectedIndex >= 0 && selectedIndex < boards.length) {
+        boards[selectedIndex].classList.add('active');
+    }
 }
