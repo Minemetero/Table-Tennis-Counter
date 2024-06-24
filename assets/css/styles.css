@@ -7,6 +7,7 @@
     scrollbar-width: 0;
     scrollbar-color: none;
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 *::-webkit-scrollbar {
     display: none;
@@ -100,52 +101,121 @@ label {
     margin-bottom: 10px;
 }
 
-.game-board {
+#gameBoardWrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    width: 80%;
-    max-width: 90%;
-    min-width: 50%;
-    height: 90%;
-    max-height: 80%;
-    min-height: 40%;
-    padding: 20px;
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: stretch;
+    flex-direction: column;
 }
-.game-board:not(.active) {
+#gameBoardWrapper:not(.active) {
     display: none;
 }
+#gameBoard {
+    flex: 1;
+}
+#gameBoard>* {
+    height: 100%;
+    padding: 10px;
+}
+#gameBoard>*:not(.active) {
+    display: none;
+}
+#gameBoard>div>div {
+    margin: 5px;
+}
 
-@media screen and (max-width: 700px) {
-    .game-board {
+.responsive-flexbox {
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width: 800px) {
+    .responsive-flexbox {
         flex-direction: column;
     }
 }
 
-.game-board>div {
-    flex: 1;
+#board-score>div {
     display: flex;
     flex-direction: column;
 }
-.game-board>div>s-card {
-    flex: 1;
-    margin: 5px;
-}
 
-.player-scores, .current-match, .match-order, .history {
-    padding: 20px;
+#playerScores, #currentMatchContainer, #matchOrderContainer, #matchHistory {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
     border-radius: 12px;
     overflow-y: auto;
+}
+#currentMatch, #playerScoreList, #historyList, #matchOrderList {
+    flex: 1;
 }
 h2 {
     margin-top: 0;
 }
 
-.current-match .player {
+@media screen and (min-width: 800px) {
+    #currentMatchContainer {
+        width: 60%;
+    }
+    #playerScores {
+        width: 40%;
+    }
+}
+#currentMatch {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#currentMatch .player {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+#currentMatch .player>* {
+    margin: 10px;
+}
+#currentMatch .player>.playerName, #playerScoreList>li>.playerName {
+    font-weight: bold;
+    color: var(--s-color-secondary);
+    font-size: x-large;
+}
+#currentMatch .player>.playerScore {
+    padding: 30px 20px;
+    min-width: 140px;
+    min-height: 160px;
+    display: flex;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    /* 伪造一个s-card的阴影 */
+    box-shadow: var(--s-elevation-level1);
+    border-radius: 12px;
+}
+
+#playerScoreList>li {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+#playerScoreList>li:not(:last-child) {
+    border-bottom: var(--s-color-surface-variant) solid 1px;
+}
+#playerScoreList>li>.playerScore {
+    font-size: x-large;
+    color: var(--s-color-primary);
+}
+
+#tooltips {
+    position: fixed;
+    width: 0;
+    height: 0;
 }

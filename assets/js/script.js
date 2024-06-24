@@ -43,7 +43,7 @@ function startGame() {
         return;
     }
     document.getElementById('setup').style.display = 'none';
-    document.getElementById('gameBoard').classList.add('active');
+    document.getElementById('gameBoardWrapper').classList.add('active');
     updatePlayerScoreList();
     updateMatchOrderList();
     startNewMatch();
@@ -98,13 +98,15 @@ function updateCurrentMatch() {
     const player2 = players[currentMatch[1]];
     match.innerHTML = `
         <div class="player">
-            <label>${player1}: <span>${currentMatchScores[player1]}</span></label>
+            <div class="playerName">${player1}</div>
+            <div class="playerScore">${currentMatchScores[player1]}</div>
             <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player1}')">
                 ${lang('ui.gameBoard.score')}
             </s-button>
         </div>
         <div class="player">
-            <label>${player2}: <span>${currentMatchScores[player2]}</span></label>
+            <div class="playerName">${player2}</div>
+            <div class="playerScore">${currentMatchScores[player2]}</div>
             <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player2}')">
                 ${lang('ui.gameBoard.score')}
             </s-button>
@@ -117,7 +119,10 @@ function updatePlayerScoreList() {
     playerScoreList.innerHTML = '';
     players.forEach(player => {
         const li = document.createElement('li');
-        li.textContent = `${player}: ${totalScores[player]}`;
+        li.innerHTML = `
+            <div class="playerName">${player}</div>
+            <div class="playerScore">${totalScores[player]}</div>
+        `;
         playerScoreList.appendChild(li);
     });
 }
@@ -159,7 +164,7 @@ function resetScores() {
     currentMatch = [0, 1];
     matchHistory = [];
     document.getElementById('playerList').innerHTML = '';
-    document.getElementById('gameBoard').style.display = 'none';
+    document.getElementById('gameBoardWrapper').style.display = 'none';
     document.getElementById('initialSetup').style.display = 'block';
     document.getElementById('playerInputGroup').style.display = 'block';
     document.getElementById('playerListGroup').style.display = 'block';

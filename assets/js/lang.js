@@ -11,12 +11,17 @@ const languages = {
         'ui.theme.themeName.dark': 'dark',
         'ui.topbar.language': 'Languages',
         'ui.topbar.theme': 'Theme',
+        'ui.topbar.more': 'More',
+        'ui.topbar.reload': 'Reload',
         'ui.topbar.github': 'GitHub',
         'ui.setup.winningBalls': 'Set Winning Balls',
         'ui.setup.playerName': 'Player Name',
         'ui.setup.addPlayer': 'Add Player',
         'ui.setup.playerListHint': 'Players:',
         'ui.setup.startGame': 'Start Game',
+        'ui.gameBoard.tab.score': 'Score',
+        'ui.gameBoard.tab.history': 'History',
+        'ui.gameBoard.tab.info': 'Info',
         'ui.gameBoard.playerScores': 'Player Scores',
         'ui.gameBoard.matchHistory': 'Match History',
         'ui.gameBoard.currentMatch': 'Current Match',
@@ -39,12 +44,17 @@ const languages = {
         'ui.theme.themeName.dark': '暗色',
         'ui.topbar.language': '语言',
         'ui.topbar.theme': '主题',
+        'ui.topbar.more': '更多',
+        'ui.topbar.reload': '重载',
         'ui.topbar.github': 'GitHub',
         'ui.setup.winningBalls': '设置制胜球数',
         'ui.setup.playerName': '玩家名',
         'ui.setup.addPlayer': '添加玩家',
         'ui.setup.playerListHint': '玩家:',
         'ui.setup.startGame': '开始比赛',
+        'ui.gameBoard.tab.score': '计分',
+        'ui.gameBoard.tab.history': '历史',
+        'ui.gameBoard.tab.info': '信息',
         'ui.gameBoard.playerScores': '玩家分数',
         'ui.gameBoard.matchHistory': '比赛历史',
         'ui.gameBoard.currentMatch': '当前比赛',
@@ -128,7 +138,7 @@ function langForce(lang, key, ...args) {
 function setLanguage(language) {
     console.log(`Language set to ${language}`);
     writeConfig('language', language);
-    window.location.reload();
+    e_reloadPage();
 }
 
 /**
