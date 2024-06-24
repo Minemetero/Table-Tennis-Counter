@@ -8,14 +8,6 @@
     <link rel="shortcut icon" href="./assets/img/icon.svg" type="image/svg+xml" />
     <link rel="shortcut icon" href="./assets/img/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/img/icon.png" />
-    <!-- 既然使用defer了，就把JS放到前面引入，让浏览器早点开始加载，提高加载速度 -->
-    <!-- 引入Sober界面库 -->
-    <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script defer src="https://unpkg.com/sober/dist/sober.min.js"></script>
-    <script defer src="./assets/js/utils.js"></script>
-    <script defer src="./assets/js/lang.js"></script>
-    <script defer src="./assets/js/script.js"></script>
-    <script defer src="./assets/js/ui.js"></script>
 </head>
 <body>
     <s-page id="page" theme="auto">
@@ -144,23 +136,7 @@
                         <div id="matchHistory">
                             <h2 data-lang="ui.gameBoard.matchHistory"></h2>
                             <ul id="historyList"></ul>
-                </div>
-                </div>
-                <div id="board-center">
-                    <s-card class="current-match" id="currentMatchContainer">
-                        <!-- Current Match -->
-                        <h2 data-lang="ui.gameBoard.currentMatch"></h2>
-                        <div id="currentMatch"></div>
-                        <div class="result-group">
-                            <p id="result"></p>
                         </div>
-                <div id="board-center">
-                    <s-card class="current-match" id="currentMatchContainer">
-                        <!-- Current Match -->
-                        <h2 data-lang="ui.gameBoard.currentMatch"></h2>
-                        <div id="currentMatch"></div>
-                        <div class="result-group">
-                            <p id="result"></p>
                     </div>
                     <!-- Tab：信息 -->
                     <div id="board-info">
@@ -179,5 +155,13 @@
             </s-snackbar>
         </div>
     </s-page>
+    
+    <!-- 引入Sober界面库 -->
+    <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
+    <script defer src="https://unpkg.com/sober/dist/sober.min.js"></script>
+    <script defer src="./assets/js/utils.js"></script>
+    <script defer src="./assets/js/lang.js"></script>
+    <script defer src="./assets/js/script.js"></script>
+    <script defer src="./assets/js/ui.js"></script>
 </body>
 </html>
