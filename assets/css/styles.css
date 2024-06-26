@@ -61,11 +61,26 @@ h1 {
     margin: 5px;
 }
 #setup {
-    min-width: 40%;
+    min-width: 60%;
+    min-height: 30%;
     padding: 10px;
-    display: block;
+}
+#setup>div {
+    margin: 5px;
+    padding: 5px;
+    flex: 1;
+}
+#setup-list {
+    display: flex;
+    flex-direction: column;
+}
+#playerListGroup {
+    flex: 1;
 }
 s-text-field {
+    display: block;
+}
+#serveRule {
     display: block;
 }
 
@@ -76,7 +91,6 @@ s-text-field {
     list-style: none;
     padding: 0;
 }
-
 .player-list li, #playerScoreList li, #matchOrderList li, #historyList li {
     margin: 5px 0;
 }
@@ -197,6 +211,20 @@ h2 {
     /* 伪造一个s-card的阴影 */
     box-shadow: var(--s-elevation-level1);
     border-radius: 12px;
+}
+#currentMatch .player>.playerTags {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+}
+#currentMatch .player>.playerTags>*:not(.active) {
+    display: none;
+}
+#result {
+    color: var(--s-color-primary);
+    min-height: 40px;
 }
 
 #playerScoreList>li {

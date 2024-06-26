@@ -1,5 +1,24 @@
 
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
+    console.info('Hello World!');
+    // 整个彩蛋
+    console.log(`
+░▀█▀░█▀█░█▀▄░█░░░█▀▀        
+░░█░░█▀█░█▀▄░█░░░█▀▀        
+░░▀░░▀░▀░▀▀░░▀▀▀░▀▀▀        
+░▀█▀░█▀▀░█▀█░█▀█░▀█▀░█▀▀    
+░░█░░█▀▀░█░█░█░█░░█░░▀▀█    
+░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀    
+░█▀▀░█▀█░█░█░█▀█░▀█▀░█▀▀░█▀▄
+░█░░░█░█░█░█░█░█░░█░░█▀▀░█▀▄
+░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀
+
+欢迎使用！
+repo: https://github.com/Minemetero/Table-Tennis-Counter
+以 Apache-2.0 协议开源
+
+欢迎Issue！
+    `);
     setTimeout(function () { // 等Sober执行完
         document.getElementById('main').style.visibility = 'visible';
         document.getElementById('top-bar').style.visibility = 'visible';
@@ -17,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick�
 </s-menu-item>`;
     });
     updateElementLanguages();
+    // Dropdown Input
+    document.querySelectorAll('#serveRule>s-menu-item').forEach(function (currentValue, index) {
+        currentValue.onclick = function () {
+            document.getElementById('serveRuleText').value = currentValue.innerText;
+            document.getElementById('serveRule').setAttribute('selectedIndex', index);
+            document.getElementById('rotationalServesGroup').hidden = index !== 1;
+        };
+    });
 });
 
 function showSnackBar(message, id = 'snackbar') {

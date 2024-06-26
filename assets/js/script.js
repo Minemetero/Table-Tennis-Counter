@@ -3,6 +3,10 @@ let totalScores = {};
 let currentMatchScores = {};
 let currentMatch = [0, 1]; // Indexes of the players in the current match
 let winBalls = 5;
+let serveRule = -1;
+let rotationalServes = 1;
+let currentServe = -1;
+let rotationalServesCounter = 0;
 let matchHistory = [];
 
 function addPlayer() {
@@ -42,6 +46,21 @@ function startGame() {
         hideLoading();
         return;
     }
+    serveRule = parseInt(document.getElementById('serveRule').getAttribute('selectedIndex'));
+    rotationalServes = parseInt(document.getElementById('rotationalServes').value);
+    if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
+        showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError');
+        hideLoading();
+        return;
+    }
+    if (serveRule === 1 && (isNaN(rotationalServes) || rotationalServes <= 0)) {
+        showSnackBar(lang('ui.tooltip.rotationalServesError'), 'RotationalServesError');
+        hideLoading();
+        return;
+    }
+    if (serveRule === 1) {
+        currentServe = 0;
+    }
     document.getElementById('setup').style.display = 'none';
     document.getElementById('gameBoardWrapper').classList.add('active');
     updatePlayerScoreList();
@@ -62,6 +81,14 @@ function startNewMatch() {
 
 function incrementCurrentMatchScore(playerName) {
     currentMatchScores[playerName]++;
+    rotationalServesCounter++;
+    if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
+        rotationalServesCounter = 0;
+        currentServe++;
+        if (currentServe >= players.length) {
+            currentServe = 0;
+        }
+    }
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
         totalScores[playerName]++;
@@ -99,6 +126,12 @@ function updateCurrentMatch() {
     match.innerHTML = `
         <div class="player">
             <div class="playerName">${player1}</div>
+            <div class="playerTags">
+                <s-chip class="player-serve ${serveRule === 1 && currentServe == 0 ? 'active': ''}" type="filled-tonal">
+                    <s-icon slot="start" type="done"></s-icon>
+                    ${lang('ui.gameBoard.serve')}
+                </s-chip>
+            </div>
             <div class="playerScore">${currentMatchScores[player1]}</div>
             <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player1}')">
                 ${lang('ui.gameBoard.score')}
@@ -106,6 +139,12 @@ function updateCurrentMatch() {
         </div>
         <div class="player">
             <div class="playerName">${player2}</div>
+            <div class="playerTags">
+                <s-chip class="player-serve ${serveRule === 1 && currentServe == 1 ? 'active': ''}" type="filled-tonal">
+                    <s-icon slot="start" type="done"></s-icon>
+                    ${lang('ui.gameBoard.serve')}
+                </s-chip>
+            </div>
             <div class="playerScore">${currentMatchScores[player2]}</div>
             <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player2}')">
                 ${lang('ui.gameBoard.score')}

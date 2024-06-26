@@ -76,30 +76,55 @@
             </s-menu>
         </s-top-app-bar>
         <main id="main">
-            <div id="setup">
-                <div class="form-group">
-                    <!-- Winning Balls -->
-                    <s-text-field data-lang="ui.setup.winningBalls" data-lang-prop="label">
-                        <input type="text" id="winBalls" value="5">
-                    </s-text-field>
+            <div class="responsive-flexbox" id="setup">
+                <div id="setup-settings">
+                    <div class="form-group">
+                        <!-- Winning Balls -->
+                        <s-text-field data-lang="ui.setup.winningBalls" data-lang-prop="label">
+                            <input type="text" id="winBalls" value="5">
+                        </s-text-field>
+                    </div>
+                    <div class="form-group" id="playerInputGroup">
+                        <!-- Player Name -->
+                        <s-text-field data-lang="ui.setup.playerName" data-lang-prop="label">
+                            <input type="text" id="playerName" />
+                            <!-- Add Player -->
+                            <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
+                                <s-icon slot="start" type="add"></s-icon>
+                            </s-button>
+                        </s-text-field>
+                    </div>
+                    <div class="form-group">
+                        <!-- Sober竟然没有下拉输入框，只能用菜单+输入框凑合一下了
+                            不过我已经给sober提了issue，下个版本就会有了-->
+                        <s-menu class="dropdown-input" id="serveRule" selectedIndex="-1">
+                            <!-- Serve Rule -->
+                            <s-text-field slot="trigger" data-lang="ui.setup.serveRule" data-lang-prop="label">
+                                <input type="text" id="serveRuleText" readonly>
+                            </s-text-field>
+                            <!-- None -->
+                            <s-menu-item data-lang="ui.setup.serveRule.none"></s-menu-item>
+                            <!-- In Turn -->
+                            <s-menu-item data-lang="ui.setup.serveRule.inTurn"></s-menu-item>
+                        </s-menu>
+                    </div>
+                    <div class="form-group" id="rotationalServesGroup" hidden>
+                        <!-- Balls Each Turn -->
+                        <s-text-field data-lang="ui.setup.rotationalServes" data-lang-prop="label">
+                            <input type="text" id="rotationalServes" value="2">
+                        </s-text-field>
+                    </div>
                 </div>
-                <div class="form-group" id="playerInputGroup">
-                    <!-- Player Name -->
-                    <s-text-field data-lang="ui.setup.playerName" data-lang-prop="label">
-                        <input type="text" id="playerName" />
-                        <!-- Add Player -->
-                        <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
-                            <s-icon slot="start" type="add"></s-icon>
-                        </s-button>
-                    </s-text-field>
+                <div id="setup-list">
+                    <div class="player-list" id="playerListGroup">
+                        <h2 id="playerListTitle" data-lang="ui.setup.playerListHint"></h2>
+                        <ul id="playerList"></ul>
+                    </div>
+                    <!-- Start Game -->
+                    <!-- 我也不知道为啥，这里必须手动指定data-lang-prop -->
+                    <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText" onclick="startGame()"></s-button>
                 </div>
-                <div class="player-list" id="playerListGroup">
-                    <h2 id="playerListTitle" data-lang="ui.setup.playerListHint"></h2>
-                    <ul id="playerList"></ul>
-                </div>
-                <!-- Start Game -->
-                <!-- 我也不知道为啥，这里必须手动指定data-lang-prop -->
-                <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText" onclick="startGame()"></s-button>
+                
             </div>
             <div id="gameBoardWrapper">
                 <!-- Tab控制 -->
