@@ -31,16 +31,14 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
     let languageMenuEl = document.getElementById('language-menu');
     langList.forEach(function(currentValue) {
         languageMenuEl.innerHTML += `
-<s-menu-item onclick="setLanguage('${currentValue}')">
+<s-popup-menu-item onclick="setLanguage('${currentValue}')">
     ${langForce(currentValue, 'language.LanguageName')}
-</s-menu-item>`;
+</s-popup-menu-item>`;
     });
     updateElementLanguages();
     // Dropdown Input
-    document.querySelectorAll('#serveRule>s-menu-item').forEach(function (currentValue, index) {
+    document.querySelectorAll('#serveRule>s-picker-item').forEach(function (currentValue, index) {
         currentValue.onclick = function () {
-            document.getElementById('serveRuleText').value = currentValue.innerText;
-            document.getElementById('serveRule').setAttribute('selectedIndex', index);
             document.getElementById('rotationalServesGroup').hidden = index !== 1;
         };
     });

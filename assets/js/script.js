@@ -46,7 +46,7 @@ function startGame() {
         hideLoading();
         return;
     }
-    serveRule = parseInt(document.getElementById('serveRule').getAttribute('selectedIndex'));
+    serveRule = parseInt(document.getElementById('serveRule').selectedIndex);
     rotationalServes = parseInt(document.getElementById('rotationalServes').value);
     if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
         showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError');
@@ -84,8 +84,10 @@ function incrementCurrentMatchScore(playerName) {
     rotationalServesCounter++;
     if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
         rotationalServesCounter = 0;
-        currentServe++;
-        if (currentServe >= players.length) {
+        if (currentServe == 0) {
+            currentServe = 1;
+        }
+        else {
             currentServe = 0;
         }
     }

@@ -4,13 +4,8 @@
 }
 * {
     max-width: none;
-    scrollbar-width: 0;
-    scrollbar-color: none;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
-}
-*::-webkit-scrollbar {
-    display: none;
 }
 
 body {
@@ -29,8 +24,9 @@ s-page {
     right: 0;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
-main {
+#main {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -78,7 +74,7 @@ h1 {
     flex: 1;
 }
 s-text-field {
-    display: block;
+    display: grid;
 }
 #serveRule {
     display: block;

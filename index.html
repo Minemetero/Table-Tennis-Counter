@@ -12,12 +12,12 @@
 <body>
     <s-page id="page" theme="auto">
         <s-linear-progress id="top-loading" indeterminate="true"></s-linear-progress>
-        <s-top-app-bar id="top-bar">
+        <s-appbar id="top-bar">
             <!--标题-->
             <div slot="headline" data-lang="ui.title">Table Tennis Counter</div>
             <!--右侧操作按钮-->
             <!-- Language -->
-            <s-menu slot="action" id="language-menu">
+            <s-popup-menu slot="action" id="language-menu">
                 <s-tooltip slot="trigger" data-lang="ui.topbar.language">
                     <s-icon-button slot="trigger">
                         <s-icon>
@@ -31,7 +31,7 @@
                         </s-icon>
                     </s-icon-button>
                 </s-tooltip>
-            </s-menu>
+            </s-popup-menu>
             <!-- Theme -->
             <s-tooltip slot="action" data-lang="ui.topbar.theme">
                 <s-icon-button slot="trigger" onclick="e_toggleTheme()">
@@ -39,14 +39,14 @@
                 </s-icon-button>
             </s-tooltip>
             <!-- More -->
-            <s-menu slot="action">
+            <s-popup-menu slot="action">
                 <s-tooltip slot="trigger" data-lang="ui.topbar.more">
                     <s-icon-button slot="trigger">
                         <s-icon type="more_horiz"></s-icon>
                     </s-icon-button>
                 </s-tooltip>
                 <!-- GitHub -->
-                <s-menu-item data-lang="ui.topbar.reload" onclick="e_reloadPage()">
+                <s-popup-menu-item data-lang="ui.topbar.reload" onclick="e_reloadPage()">
                     <s-icon slot="start">
                         <svg viewBox="0 -960 960 960">
                             <path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 
@@ -57,7 +57,7 @@
                     </s-icon>
                 </s-menu-item>
                 <!-- GitHub -->
-                <s-menu-item data-lang="ui.topbar.github" onclick="e_gotoGitHub()">
+                <s-popup-menu-item data-lang="ui.topbar.github" onclick="e_gotoGitHub()">
                     <s-icon slot="start">
                         <svg viewBox="0 0 1024 1024">
                             <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 
@@ -72,10 +72,10 @@
                             </path>
                         </svg>
                     </s-icon>
-                </s-menu-item>
+                </s--menu-item>
             </s-menu>
-        </s-top-app-bar>
-        <main id="main">
+        </s-appbar>
+        <s-scroll-view id="main">
             <div class="responsive-flexbox" id="setup">
                 <div id="setup-settings">
                     <div class="form-group">
@@ -95,18 +95,13 @@
                         </s-text-field>
                     </div>
                     <div class="form-group">
-                        <!-- Sober竟然没有下拉输入框，只能用菜单+输入框凑合一下了
-                            不过我已经给sober提了issue，下个版本就会有了-->
-                        <s-menu class="dropdown-input" id="serveRule" selectedIndex="-1">
-                            <!-- Serve Rule -->
-                            <s-text-field slot="trigger" data-lang="ui.setup.serveRule" data-lang-prop="label">
-                                <input type="text" id="serveRuleText" readonly>
-                            </s-text-field>
+                        <!-- Sober已经有下拉输入框力，太好力！ -->
+                        <s-picker class="dropdown-input" id="serveRule" data-lang="ui.setup.serveRule" data-lang-prop="label">
                             <!-- None -->
-                            <s-menu-item data-lang="ui.setup.serveRule.none"></s-menu-item>
+                            <s-picker-item data-lang="ui.setup.serveRule.none"></s-picker-item>
                             <!-- In Turn -->
-                            <s-menu-item data-lang="ui.setup.serveRule.inTurn"></s-menu-item>
-                        </s-menu>
+                            <s-picker-item data-lang="ui.setup.serveRule.inTurn"></s-picker-item>
+                        </s-picker>
                     </div>
                     <div class="form-group" id="rotationalServesGroup" hidden>
                         <!-- Balls Each Turn -->
@@ -173,7 +168,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </s-scroll-view>
         <div id="tooltips">
             <s-snackbar id="snackbar-snackbar">
                 Snackbar Message
@@ -183,7 +178,7 @@
     
     <!-- 引入Sober界面库 -->
     <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script src="https://unpkg.com/sober@0.1.13/dist/sober.min.js"></script>
+    <script src="https://unpkg.com/sober@0.2.15/dist/sober.min.js"></script>
     <script defer src="./assets/js/utils.js"></script>
     <script defer src="./assets/js/lang.js"></script>
     <script defer src="./assets/js/script.js"></script>
