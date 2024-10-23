@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
     console.info('Hello World!');
     // 整个彩蛋

@@ -42,6 +42,7 @@ const languages = {
         'ui.tooltip.serveRuleError': 'Please choose a valid serve rule',
         'ui.tooltip.rotationalServesError': 'Please enter a valid number of rotational serves number',
         'ui.tooltip.repoTip': 'Issues and PRs are welcome!!!',
+        'ui.gameBoard.matchPoint': '{0} is at match point!',
     },
     'zh-CN': {
         'language.LanguageName': '简体中文',
@@ -82,6 +83,7 @@ const languages = {
         'ui.tooltip.serveRuleError': '请选择一个有效的发球规则',
         'ui.tooltip.rotationalServesError': '请填入有效的轮换发球数',
         'ui.tooltip.repoTip': '欢迎 Issue 和 PR！！！',
+        'ui.gameBoard.matchPoint': '{0} 处于赛点！',
     },
     'ja-JP': {
         'language.LanguageName': '日本語',
@@ -122,6 +124,7 @@ const languages = {
         'ui.tooltip.serveRuleError': '有効なサーブルールを選択してください',
         'ui.tooltip.rotationalServesError': '有効なサーブ交代数を入力してください',
         'ui.tooltip.repoTip': 'IssueやPRをお待ちしています！！！',
+        'ui.gameBoard.matchPoint': '{0} がマッチポイントです!',
     },
     'zh-TW': {
         'language.LanguageName': '繁體中文',
@@ -162,6 +165,7 @@ const languages = {
         'ui.tooltip.serveRuleError': '請選擇一個有效的發球規則',
         'ui.tooltip.rotationalServesError': '請輸入有效的輪換發球數',
         'ui.tooltip.repoTip': '歡迎提交 Issue 和 PR！！！',
+        'ui.gameBoard.matchPoint': '{0} 處於賽點!',
     },
 };
 /**
