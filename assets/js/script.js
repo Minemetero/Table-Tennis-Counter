@@ -79,20 +79,28 @@ function startNewMatch() {
     hideLoading();
 }
 
+function checkMatchPoint(playerName) {
+    if (currentMatchScores[playerName] === winBalls - 1) {
+        // Player is at match point
+        document.getElementById('result').innerText = lang('ui.gameBoard.matchPoint', playerName);
+    } else {
+        // Clear the match point message if not at match point
+        document.getElementById('result').innerText = '';
+    }
+}
+
 function incrementCurrentMatchScore(playerName) {
     currentMatchScores[playerName]++;
     rotationalServesCounter++;
     if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
         rotationalServesCounter = 0;
-        if (currentServe == 0) {
-            currentServe = 1;
-        }
-        else {
-            currentServe = 0;
-        }
+        currentServe = currentServe === 0 ? 1 : 0;
     }
+    checkMatchPoint(playerName); // Call the new function here
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
+        // Clear any match point messages
+        document.getElementById('result').innerText = '';
         totalScores[playerName]++;
         document.getElementById('result').innerText = lang('ui.gameBoard.winMessage', playerName);
         matchHistory.push(lang('ui.gameBoard.matchHistory.item', players[currentMatch[0]], players[currentMatch[1]], playerName));
@@ -108,6 +116,7 @@ function incrementCurrentMatchScore(playerName) {
         }, 2000);
     }
 }
+
 
 function disableScoreButtons() {
     document.querySelectorAll('.score-button').forEach(button => {
