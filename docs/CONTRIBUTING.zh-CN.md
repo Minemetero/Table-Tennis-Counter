@@ -58,3 +58,4 @@ Fork 存储库。
 ## 提示
 - 使用 [Prettier](https://prettier.cn) 格式化您的代码。  
 - 切勿使用硬编码值。请改用语言文件 （[assets/js/lang.js](./../assets/js/lang.js)）。
+- 请不要添加任何个人插件配置文件

@@ -54,6 +54,7 @@ The subject contains a brief description of the change.
 Footer.  
 The footer should contain any information about major changes and is also the location to reference the GitHub Issue that this commit closes.  
 
-## Hint
+## Tips
 - Use [Prettier](https://prettier.io) to format your code.
 - Never use hard-coded values. Use language file ([assets/js/lang.js](./assets/js/lang.js)) instead.
+- Please do not add any of your personal plugin configuration files.
