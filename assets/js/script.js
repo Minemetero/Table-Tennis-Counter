@@ -117,7 +117,6 @@ function incrementCurrentMatchScore(playerName) {
     }
 }
 
-
 function disableScoreButtons() {
     document.querySelectorAll('.score-button').forEach(button => {
         button.disabled = true;

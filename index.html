@@ -119,8 +119,8 @@
                     <!-- 我也不知道为啥，这里必须手动指定data-lang-prop -->
                     <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText" onclick="startGame()"></s-button>
                 </div>
-                
             </div>
+            
             <div id="gameBoardWrapper">
                 <!-- Tab控制 -->
                 <s-tab class="game-board" id="gameBoardSelector" onchange="e_boardSelectChange()">
@@ -178,7 +178,7 @@
     
     <!-- 引入Sober界面库 -->
     <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script src="https://unpkg.com/sober@0.2.15/dist/sober.min.js"></script>
+    <script src="https://unpkg.com/sober@0.4.2/dist/sober.min.js"></script>
     <script defer src="./assets/js/utils.js"></script>
     <script defer src="./assets/js/lang.js"></script>
     <script defer src="./assets/js/script.js"></script>

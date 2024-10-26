@@ -32,6 +32,7 @@ const languages = {
         'ui.gameBoard.matchOrder': 'Match Order',
         'ui.gameBoard.serve': 'Serve',
         'ui.gameBoard.score': 'Score',
+        'ui.gameBoard.matchPoint': '{0} is at match point!',
         'ui.gameBoard.winMessage': '{0} Wins this round!',
         'ui.gameBoard.matchHistory.item': '{0} vs {1}: {2} won',
         'ui.gameBoard.matchOrder.item': '{0} vs {1}',
@@ -42,7 +43,6 @@ const languages = {
         'ui.tooltip.serveRuleError': 'Please choose a valid serve rule',
         'ui.tooltip.rotationalServesError': 'Please enter a valid number of rotational serves number',
         'ui.tooltip.repoTip': 'Issues and PRs are welcome!!!',
-        'ui.gameBoard.matchPoint': '{0} is at match point!',
     },
     'zh-CN': {
         'language.LanguageName': '简体中文',
@@ -73,6 +73,7 @@ const languages = {
         'ui.gameBoard.matchOrder': '比赛顺序',
         'ui.gameBoard.serve': '发球',
         'ui.gameBoard.score': '得分',
+        'ui.gameBoard.matchPoint': '{0} 处于赛点！',
         'ui.gameBoard.winMessage': '{0} 本轮获胜！',
         'ui.gameBoard.matchHistory.item': '{0} vs {1}: {2} 获胜',
         'ui.gameBoard.matchOrder.item': '{0} vs {1}',
@@ -83,7 +84,6 @@ const languages = {
         'ui.tooltip.serveRuleError': '请选择一个有效的发球规则',
         'ui.tooltip.rotationalServesError': '请填入有效的轮换发球数',
         'ui.tooltip.repoTip': '欢迎 Issue 和 PR！！！',
-        'ui.gameBoard.matchPoint': '{0} 处于赛点！',
     },
     'ja-JP': {
         'language.LanguageName': '日本語',
@@ -114,6 +114,7 @@ const languages = {
         'ui.gameBoard.matchOrder': '試合順序',
         'ui.gameBoard.serve': 'サーブ',
         'ui.gameBoard.score': '得点',
+        'ui.gameBoard.matchPoint': '{0} がマッチポイントです!',
         'ui.gameBoard.winMessage': '{0} がこのラウンドに勝利しました！',
         'ui.gameBoard.matchHistory.item': '{0} 対 {1}: {2} が勝利',
         'ui.gameBoard.matchOrder.item': '{0} 対 {1}',
@@ -124,7 +125,6 @@ const languages = {
         'ui.tooltip.serveRuleError': '有効なサーブルールを選択してください',
         'ui.tooltip.rotationalServesError': '有効なサーブ交代数を入力してください',
         'ui.tooltip.repoTip': 'IssueやPRをお待ちしています！！！',
-        'ui.gameBoard.matchPoint': '{0} がマッチポイントです!',
     },
     'zh-TW': {
         'language.LanguageName': '繁體中文',
@@ -155,6 +155,7 @@ const languages = {
         'ui.gameBoard.matchOrder': '比賽順序',
         'ui.gameBoard.serve': '發球',
         'ui.gameBoard.score': '得分',
+        'ui.gameBoard.matchPoint': '{0} 處於賽點!',
         'ui.gameBoard.winMessage': '{0} 贏得了這一局！',
         'ui.gameBoard.matchHistory.item': '{0} 對 {1}: {2} 獲勝',
         'ui.gameBoard.matchOrder.item': '{0} 對 {1}',
@@ -165,7 +166,6 @@ const languages = {
         'ui.tooltip.serveRuleError': '請選擇一個有效的發球規則',
         'ui.tooltip.rotationalServesError': '請輸入有效的輪換發球數',
         'ui.tooltip.repoTip': '歡迎提交 Issue 和 PR！！！',
-        'ui.gameBoard.matchPoint': '{0} 處於賽點!',
     },
 };
 /**
