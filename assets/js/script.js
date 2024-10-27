@@ -79,18 +79,25 @@ function startNewMatch() {
     hideLoading();
 }
 
+function checkMatchPoint(playerName) {
+    if (currentMatchScores[playerName] === winBalls - 1) {
+        // Player is at match point
+        document.getElementById('result').innerText = lang('ui.gameBoard.matchPoint', playerName);
+        // Automatically clear the match point message after 1.5 seconds
+        setTimeout(() => {
+            document.getElementById('result').innerText = '';
+        }, 1500);
+    }
+}
+
 function incrementCurrentMatchScore(playerName) {
     currentMatchScores[playerName]++;
     rotationalServesCounter++;
     if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
         rotationalServesCounter = 0;
-        if (currentServe == 0) {
-            currentServe = 1;
-        }
-        else {
-            currentServe = 0;
-        }
+        currentServe = currentServe === 0 ? 1 : 0;
     }
+    checkMatchPoint(playerName);
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
         totalScores[playerName]++;
