@@ -83,9 +83,10 @@ function checkMatchPoint(playerName) {
     if (currentMatchScores[playerName] === winBalls - 1) {
         // Player is at match point
         document.getElementById('result').innerText = lang('ui.gameBoard.matchPoint', playerName);
-    } else {
-        // Clear the match point message if not at match point
-        document.getElementById('result').innerText = '';
+        // Automatically clear the match point message after 1.5 seconds
+        setTimeout(() => {
+            document.getElementById('result').innerText = '';
+        }, 1500);
     }
 }
 
@@ -96,11 +97,9 @@ function incrementCurrentMatchScore(playerName) {
         rotationalServesCounter = 0;
         currentServe = currentServe === 0 ? 1 : 0;
     }
-    checkMatchPoint(playerName); // Call the new function here
+    checkMatchPoint(playerName);
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
-        // Clear any match point messages
-        document.getElementById('result').innerText = '';
         totalScores[playerName]++;
         document.getElementById('result').innerText = lang('ui.gameBoard.winMessage', playerName);
         matchHistory.push(lang('ui.gameBoard.matchHistory.item', players[currentMatch[0]], players[currentMatch[1]], playerName));
