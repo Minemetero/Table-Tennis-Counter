@@ -1,5 +1,5 @@
 # Table Tennis Counter
-The Pool Score Tracker is a web application that allows you to track scores for a pool (billiards) game. It supports multiple players, keeps track of the match history, and updates scores automatically.  
+Table Tennis Counter is a web application that you can track scores for a ping-pong game. It supports multiple players, keeps track of the match history, and updates scores automatically.  
   
 ## Introduction
 ### Features
