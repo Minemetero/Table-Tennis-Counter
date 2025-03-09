@@ -236,11 +236,8 @@ function undoLastScore() {
     currentMatchScores[lastScoringPlayer]--;
     rotationalServesCounter = lastRotationalServesCounter;
     currentServe = lastServe;
-    
-    // Reset the last scoring player
     lastScoringPlayer = null;
-    
-    // Update the display
+
     updateCurrentMatch();
 }
 
