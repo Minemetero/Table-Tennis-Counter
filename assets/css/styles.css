@@ -78,6 +78,7 @@ s-text-field {
 }
 #serveRule {
     display: block;
+    width: 280px; /*挺简单粗暴的。。。我觉得这个280还小了，不过我懒得把四=三个框全改一遍 */
 }
 
 #playerListTitle {
@@ -242,4 +243,26 @@ h2 {
     position: fixed;
     width: 0;
     height: 0;
+}
+
+.undo-button {
+    /* Force a fixed width and height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;  /* adjust this value as needed */
+    height: 40px;  /* adjust this value as needed */
+    padding: 0;    /* no extra padding, since size is fixed */
+    border-radius: 8px !important;
+}
+.undo-button span {
+    /* Let the text take the remaining space and center it */
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+.result-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

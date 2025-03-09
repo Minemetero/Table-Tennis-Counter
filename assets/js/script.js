@@ -8,6 +8,9 @@ let rotationalServes = 1;
 let currentServe = -1;
 let rotationalServesCounter = 0;
 let matchHistory = [];
+let lastScoringPlayer = null;
+let lastRotationalServesCounter = 0;
+let lastServe = -1;
 
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
@@ -91,6 +94,10 @@ function checkMatchPoint(playerName) {
 }
 
 function incrementCurrentMatchScore(playerName) {
+    lastScoringPlayer = playerName;
+    lastRotationalServesCounter = rotationalServesCounter;
+    lastServe = currentServe;
+
     currentMatchScores[playerName]++;
     rotationalServesCounter++;
     if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
@@ -218,6 +225,20 @@ function resetScores() {
     document.getElementById('playerListGroup').style.display = 'block';
     document.getElementById('initialButtons').style.display = 'block';
     document.getElementById('historyList').innerHTML = '';
+}
+
+function undoLastScore() {
+    if (!lastScoringPlayer) {
+        showSnackBar(lang('ui.tooltip.noScoreToUndo'), 'NoScoreToUndo');
+        return;
+    }
+
+    currentMatchScores[lastScoringPlayer]--;
+    rotationalServesCounter = lastRotationalServesCounter;
+    currentServe = lastServe;
+    lastScoringPlayer = null;
+
+    updateCurrentMatch();
 }
 
 window.incrementCurrentMatchScore = incrementCurrentMatchScore;

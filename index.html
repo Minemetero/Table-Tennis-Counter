@@ -86,9 +86,7 @@
                     </div>
                     <div class="form-group" id="playerInputGroup">
                         <!-- Player Name -->
-                        <s-text-field data-lang="ui.setup.playerName" data-lang-prop="label">
-                            <input type="text" id="playerName" />
-                            <!-- Add Player -->
+                        <s-text-field id="playerName" data-lang="ui.setup.playerName" data-lang-prop="label">
                             <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
                                 <s-icon slot="start" type="add"></s-icon>
                             </s-button>
@@ -105,9 +103,7 @@
                     </div>
                     <div class="form-group" id="rotationalServesGroup" hidden>
                         <!-- Balls Each Turn -->
-                        <s-text-field data-lang="ui.setup.rotationalServes" data-lang-prop="label">
-                            <input type="text" id="rotationalServes" value="2">
-                        </s-text-field>
+                        <s-text-field id="rotationalServes" data-lang="ui.setup.rotationalServes" data-lang-prop="label" value="2"></s-text-field>
                     </div>
                 </div>
                 <div id="setup-list">
@@ -143,6 +139,10 @@
                             <div id="currentMatch"></div>
                             <div class="result-group">
                                 <p id="result"></p>
+                                <!-- Undo Button -->
+                                <s-button class="undo-button" type="filled-tonal" onclick="undoLastScore()">
+                                    <span data-lang="ui.gameBoard.undo">Undo</span>
+                                </s-button>
                             </div>
                         </div>
                         <div id="playerScores">
@@ -178,7 +178,7 @@
     
     <!-- 引入Sober界面库 -->
     <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script src="https://unpkg.com/sober@0.4.2/dist/sober.min.js"></script>
+    <script src="https://unpkg.com/sober@0.7.0/dist/sober.min.js"></script>
     <script defer src="./assets/js/utils.js"></script>
     <script defer src="./assets/js/lang.js"></script>
     <script defer src="./assets/js/script.js"></script>
