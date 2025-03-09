@@ -127,7 +127,7 @@ const languages = {
         'ui.tooltip.serveRuleError': '有効なサーブルールを選択してください',
         'ui.tooltip.rotationalServesError': '有効なサーブ交代数を入力してください',
         'ui.tooltip.repoTip': 'IssueやPRをお待ちしています！！！',
-        'ui.gameBoard.undo': '取り消し',
+        'ui.gameBoard.undo': 'アンドゥ',
     },
     'zh-TW': {
         'language.LanguageName': '繁體中文',
@@ -169,7 +169,7 @@ const languages = {
         'ui.tooltip.serveRuleError': '請選擇一個有效的發球規則',
         'ui.tooltip.rotationalServesError': '請輸入有效的輪換發球數',
         'ui.tooltip.repoTip': '歡迎提交 Issue 和 PR！！！',
-        'ui.gameBoard.undo': '取消',
+        'ui.gameBoard.undo': '撤銷',
     },
 };
 /**
