@@ -87,7 +87,7 @@
                     <div class="form-group" id="playerInputGroup">
                         <!-- Player Name -->
                         <s-text-field data-lang="ui.setup.playerName" data-lang-prop="label">
-                            <input type="text" id="playerName" />
+                            <input type="text" id="playerName"/>
                             <!-- Add Player -->
                             <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
                                 <s-icon slot="start" type="add"></s-icon>
@@ -143,6 +143,7 @@
                             <div id="currentMatch"></div>
                             <div class="result-group">
                                 <p id="result"></p>
+                                <!-- Undo Button -->
                                 <s-button type="filled-tonal" onclick="undoLastScore()">
                                     <s-icon slot="start" type="undo"></s-icon>
                                     <span data-lang="ui.gameBoard.undo">Undo</span>
@@ -182,7 +183,7 @@
     
     <!-- 引入Sober界面库 -->
     <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script src="https://unpkg.com/sober@0.2.15/dist/sober.min.js"></script>
+    <script src="https://unpkg.com/sober@0.6.8/dist/sober.min.js"></script>
     <script defer src="./assets/js/utils.js"></script>
     <script defer src="./assets/js/lang.js"></script>
     <script defer src="./assets/js/script.js"></script>

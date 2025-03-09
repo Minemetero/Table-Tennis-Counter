@@ -78,6 +78,7 @@ s-text-field {
 }
 #serveRule {
     display: block;
+    width: 280px; /*挺简单粗暴的。。。我觉得这个280还小了，不过我懒得把四=三个框全改一遍 */
 }
 
 #playerListTitle {
