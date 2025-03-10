@@ -246,23 +246,28 @@ h2 {
 }
 
 .undo-button {
-    /* Force a fixed width and height */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 65px;  /* adjust this value as needed */
-    height: 40px;  /* adjust this value as needed */
-    padding: 0;    /* no extra padding, since size is fixed */
+    width: 65px;
+    height: 40px;
+    padding: 0;
     border-radius: 8px !important;
+    margin-top: 8px;
 }
 .undo-button span {
-    /* Let the text take the remaining space and center it */
     flex: 1;
     text-align: center;
     white-space: nowrap;
 }
 .result-group {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    margin-bottom: 20px;
+}
+#result {
+    margin: 0;
+    margin-bottom: 4px;
 }
