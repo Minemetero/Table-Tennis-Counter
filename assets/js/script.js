@@ -11,7 +11,19 @@ let matchHistory = [];
 let lastScoringPlayer = null;
 let lastRotationalServesCounter = 0;
 let lastServe = -1;
-
+function addWinBalls() {
+    const value = parseInt(document.getElementById('winBalls').value);
+    if (!isNaN(value)) {
+        document.getElementById('winBalls').value = value + 1;
+    }
+}
+function minusWinBalls() {
+    const value = parseInt(document.getElementById('winBalls').value);
+    // winBall's minimum is 0
+    if (!isNaN(value) && value > 0) {
+        document.getElementById('winBalls').value = value - 1;
+    }
+}
 function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
     if (playerName === '' || players.includes(playerName)) {
