@@ -81,6 +81,12 @@
                     <div class="form-group">
                         <!-- Winning Balls -->
                         <s-text-field id="winBalls" data-lang="ui.setup.winningBalls" data-lang-prop="label">
+                            <s-icon-button onclick="addWinBalls()" slot="end">
+                                <s-icon type="chevron_up"></s-icon>
+                            </s-icon-button>
+                            <s-icon-button onclick="minusWinBalls()" slot="end">
+                                <s-icon type="chevron_down"></s-icon>
+                            </s-icon-button>
                         </s-text-field>
                     </div>
                     <div class="form-group" id="playerInputGroup">
