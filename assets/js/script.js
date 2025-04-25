@@ -15,6 +15,8 @@ function addWinBalls() {
     const value = parseInt(document.getElementById('winBalls').value);
     if (!isNaN(value)) {
         document.getElementById('winBalls').value = value + 1;
+    } else {
+        document.getElementById('winBalls').value = 1;
     }
 }
 function minusWinBalls() {
