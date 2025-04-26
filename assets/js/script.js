@@ -201,16 +201,19 @@ function updateHistoryList() {
 
     matchHistory.forEach((match, index) => {
         const li = document.createElement('li');
-
-        const scoreLine = Object.entries(totalScores)
-            .map(([player, score]) => `${score}`)
-            .join(':');
+        
+        // Extract the two players from the match string
+        const matchParts = match.split(' vs ');
+        const player1 = matchParts[0].trim();
+        const player2 = matchParts[1].split(':')[0].trim();
+        
+        // Only show scores for these two players
+        const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
 
         li.textContent = `${match}, ${scoreLine}`;
         historyList.appendChild(li);
     });
 }
-
 
 function updateMatchOrder() {
     currentMatch[0] = (currentMatch[0] + 1) % players.length;
