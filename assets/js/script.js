@@ -137,6 +137,7 @@ function incrementCurrentMatchScore(playerName) {
     }
 }
 
+
 function disableScoreButtons() {
     document.querySelectorAll('.score-button').forEach(button => {
         button.disabled = true;
@@ -211,9 +212,19 @@ function updateMatchOrderList() {
 function updateHistoryList() {
     const historyList = document.getElementById('historyList');
     historyList.innerHTML = '';
-    matchHistory.forEach(match => {
+
+    matchHistory.forEach((match, index) => {
         const li = document.createElement('li');
-        li.textContent = match;
+        
+        // Extract the two players from the match string
+        const matchParts = match.split(' vs ');
+        const player1 = matchParts[0].trim();
+        const player2 = matchParts[1].split(':')[0].trim();
+        
+        // Only show scores for these two players
+        const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
+
+        li.textContent = `${match}, ${scoreLine}`;
         historyList.appendChild(li);
     });
 }
@@ -256,3 +267,6 @@ function undoLastScore() {
 }
 
 window.incrementCurrentMatchScore = incrementCurrentMatchScore;
+
+console.log({matchHistory});
+console.log({totalScores});
