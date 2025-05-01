@@ -159,7 +159,7 @@ function updateCurrentMatch() {
             <div class="playerName">${player1}</div>
             <div class="playerTags">
                 <s-chip class="player-serve ${serveRule === 1 && currentServe == 0 ? 'active': ''}" type="filled-tonal">
-                    <s-icon slot="start" type="done"></s-icon>
+                    <s-icon slot="start" name="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
             </div>
@@ -172,7 +172,7 @@ function updateCurrentMatch() {
             <div class="playerName">${player2}</div>
             <div class="playerTags">
                 <s-chip class="player-serve ${serveRule === 1 && currentServe == 1 ? 'active': ''}" type="filled-tonal">
-                    <s-icon slot="start" type="done"></s-icon>
+                    s<s-icon slot="start" name="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
             </div>
