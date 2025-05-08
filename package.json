@@ -1,0 +1,10 @@
+{
+  "name": "table-tennis-counter",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "terser assets/**/*.js -o dist/bundle.min.js --compress --mangle"
+  },
+  "devDependencies": {
+    "terser": "^5.0.0"
+  }
+}
