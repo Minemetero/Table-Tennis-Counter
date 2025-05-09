@@ -1,0 +1,18 @@
+{
+    "name": "table-tennis-counter",
+    "version": "2.0.0",
+    "description": "Table Tennis Counter is a web application that you can track scores for a ping-pong game.",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "keywords": [],
+    "author": "Minemetero, lingbopro and other contributors",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "vite": "^6.3.5",
+        "vite-plugin-html": "^3.2.2"
+    }
+}

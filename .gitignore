@@ -12,3 +12,11 @@
 .hintrc
 .DS_Store
 **/desktop.ini
+
+node_modules/
+dist/
+
+# lockfiles
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml
