@@ -1,3 +1,6 @@
+import { lang } from './lang';
+import { hideLoading, showLoading, showSnackBar } from './ui';
+
 let players = [];
 let totalScores = {};
 let currentMatchScores = {};
@@ -11,7 +14,7 @@ let matchHistory = [];
 let lastScoringPlayer = null;
 let lastRotationalServesCounter = 0;
 let lastServe = -1;
-function addWinBalls() {
+export function addWinBalls() {
     const value = parseInt(document.getElementById('winBalls').value);
     if (!isNaN(value)) {
         document.getElementById('winBalls').value = value + 1;
@@ -19,14 +22,14 @@ function addWinBalls() {
         document.getElementById('winBalls').value = 1;
     }
 }
-function minusWinBalls() {
+export function minusWinBalls() {
     const value = parseInt(document.getElementById('winBalls').value);
     // winBall's minimum is 0
     if (!isNaN(value) && value > 0) {
         document.getElementById('winBalls').value = value - 1;
     }
 }
-function addPlayer() {
+export function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
     if (playerName === '' || players.includes(playerName)) {
         showSnackBar(lang('ui.tooltip.playerNameError'), 'PlayerNameError');
@@ -38,11 +41,11 @@ function addPlayer() {
     document.getElementById('playerName').value = '';
 }
 
-function updatePlayerList() {
+export function updatePlayerList() {
     showLoading();
     const playerList = document.getElementById('playerList');
     playerList.innerHTML = '';
-    players.forEach(player => {
+    players.forEach((player) => {
         const li = document.createElement('li');
         li.textContent = player;
         playerList.appendChild(li);
@@ -50,7 +53,7 @@ function updatePlayerList() {
     hideLoading();
 }
 
-function startGame() {
+export function startGame() {
     showLoading();
     if (players.length < 2) {
         showSnackBar(lang('ui.tooltip.playerAmountError'), 'PlayerAmountError');
@@ -64,14 +67,19 @@ function startGame() {
         return;
     }
     serveRule = parseInt(document.getElementById('serveRule').selectedIndex);
-    rotationalServes = parseInt(document.getElementById('rotationalServes').value);
+    rotationalServes = parseInt(
+        document.getElementById('rotationalServes').value
+    );
     if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
         showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError');
         hideLoading();
         return;
     }
     if (serveRule === 1 && (isNaN(rotationalServes) || rotationalServes <= 0)) {
-        showSnackBar(lang('ui.tooltip.rotationalServesError'), 'RotationalServesError');
+        showSnackBar(
+            lang('ui.tooltip.rotationalServesError'),
+            'RotationalServesError'
+        );
         hideLoading();
         return;
     }
@@ -86,20 +94,23 @@ function startGame() {
     hideLoading();
 }
 
-function startNewMatch() {
+export function startNewMatch() {
     showLoading();
     currentMatchScores = {};
-    players.forEach(player => {
+    players.forEach((player) => {
         currentMatchScores[player] = 0;
     });
     updateCurrentMatch();
     hideLoading();
 }
 
-function checkMatchPoint(playerName) {
+export function checkMatchPoint(playerName) {
     if (currentMatchScores[playerName] === winBalls - 1) {
         // Player is at match point
-        document.getElementById('result').innerText = lang('ui.gameBoard.matchPoint', playerName);
+        document.getElementById('result').innerText = lang(
+            'ui.gameBoard.matchPoint',
+            playerName
+        );
         // Automatically clear the match point message after 1.5 seconds
         setTimeout(() => {
             document.getElementById('result').innerText = '';
@@ -107,7 +118,7 @@ function checkMatchPoint(playerName) {
     }
 }
 
-function incrementCurrentMatchScore(playerName) {
+export function incrementCurrentMatchScore(playerName) {
     lastScoringPlayer = playerName;
     lastRotationalServesCounter = rotationalServesCounter;
     lastServe = currentServe;
@@ -122,8 +133,18 @@ function incrementCurrentMatchScore(playerName) {
     updateCurrentMatch();
     if (currentMatchScores[playerName] >= winBalls) {
         totalScores[playerName]++;
-        document.getElementById('result').innerText = lang('ui.gameBoard.winMessage', playerName);
-        matchHistory.push(lang('ui.gameBoard.matchHistory.item', players[currentMatch[0]], players[currentMatch[1]], playerName));
+        document.getElementById('result').innerText = lang(
+            'ui.gameBoard.winMessage',
+            playerName
+        );
+        matchHistory.push(
+            lang(
+                'ui.gameBoard.matchHistory.item',
+                players[currentMatch[0]],
+                players[currentMatch[1]],
+                playerName
+            )
+        );
         disableScoreButtons();
         setTimeout(() => {
             document.getElementById('result').innerText = '';
@@ -137,20 +158,19 @@ function incrementCurrentMatchScore(playerName) {
     }
 }
 
-
-function disableScoreButtons() {
-    document.querySelectorAll('.score-button').forEach(button => {
+export function disableScoreButtons() {
+    document.querySelectorAll('.score-button').forEach((button) => {
         button.disabled = true;
     });
 }
 
-function enableScoreButtons() {
-    document.querySelectorAll('.score-button').forEach(button => {
+export function enableScoreButtons() {
+    document.querySelectorAll('.score-button').forEach((button) => {
         button.disabled = false;
     });
 }
 
-function updateCurrentMatch() {
+export function updateCurrentMatch() {
     const match = document.getElementById('currentMatch');
     const player1 = players[currentMatch[0]];
     const player2 = players[currentMatch[1]];
@@ -158,7 +178,9 @@ function updateCurrentMatch() {
         <div class="player">
             <div class="playerName">${player1}</div>
             <div class="playerTags">
-                <s-chip class="player-serve ${serveRule === 1 && currentServe == 0 ? 'active': ''}" type="filled-tonal">
+                <s-chip class="player-serve ${
+                    serveRule === 1 && currentServe == 0 ? 'active' : ''
+                }" type="filled-tonal">
                     <s-icon slot="start" type="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
@@ -171,7 +193,9 @@ function updateCurrentMatch() {
         <div class="player">
             <div class="playerName">${player2}</div>
             <div class="playerTags">
-                <s-chip class="player-serve ${serveRule === 1 && currentServe == 1 ? 'active': ''}" type="filled-tonal">
+                <s-chip class="player-serve ${
+                    serveRule === 1 && currentServe == 1 ? 'active' : ''
+                }" type="filled-tonal">
                     <s-icon slot="start" type="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
@@ -184,10 +208,10 @@ function updateCurrentMatch() {
     `;
 }
 
-function updatePlayerScoreList() {
+export function updatePlayerScoreList() {
     const playerScoreList = document.getElementById('playerScoreList');
     playerScoreList.innerHTML = '';
-    players.forEach(player => {
+    players.forEach((player) => {
         const li = document.createElement('li');
         li.innerHTML = `
             <div class="playerName">${player}</div>
@@ -197,7 +221,7 @@ function updatePlayerScoreList() {
     });
 }
 
-function updateMatchOrderList() {
+export function updateMatchOrderList() {
     const matchOrderList = document.getElementById('matchOrderList');
     matchOrderList.innerHTML = '';
     for (let i = 0; i < players.length; i++) {
@@ -209,18 +233,18 @@ function updateMatchOrderList() {
     }
 }
 
-function updateHistoryList() {
+export function updateHistoryList() {
     const historyList = document.getElementById('historyList');
     historyList.innerHTML = '';
 
     matchHistory.forEach((match, index) => {
         const li = document.createElement('li');
-        
+
         // Extract the two players from the match string
         const matchParts = match.split(' vs ');
         const player1 = matchParts[0].trim();
         const player2 = matchParts[1].split(':')[0].trim();
-        
+
         // Only show scores for these two players
         const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
 
@@ -229,7 +253,7 @@ function updateHistoryList() {
     });
 }
 
-function updateMatchOrder() {
+export function updateMatchOrder() {
     currentMatch[0] = (currentMatch[0] + 1) % players.length;
     currentMatch[1] = (currentMatch[1] + 1) % players.length;
     if (currentMatch[0] === currentMatch[1]) {
@@ -237,7 +261,7 @@ function updateMatchOrder() {
     }
 }
 
-function resetScores() {
+export function resetScores() {
     players = [];
     totalScores = {};
     currentMatchScores = {};
@@ -252,7 +276,7 @@ function resetScores() {
     document.getElementById('historyList').innerHTML = '';
 }
 
-function undoLastScore() {
+export function undoLastScore() {
     if (!lastScoringPlayer) {
         showSnackBar(lang('ui.tooltip.noScoreToUndo'), 'NoScoreToUndo');
         return;

@@ -1,8 +1,11 @@
+import { e_reloadPage } from "./ui";
+import { writeConfig } from "./utils";
+
 /**
  * 存储语言文本
  * @type {Object<Object>}
  */
-const languages = {
+export const languages = {
     'en-US': {
         'language.LanguageName': 'English',
         'ui.title': 'Table Tennis Counter',
@@ -223,9 +226,7 @@ const languages = {
  * 当前语言
  * @type {String}
  */
-var currentLanguage = 'en-US'; // 这里得用var定义全局变量
-
-
+let currentLanguage = 'en-US';
 
 /**
  * 这里是逻辑部分
@@ -236,9 +237,9 @@ var currentLanguage = 'en-US'; // 这里得用var定义全局变量
 
 /**
  * 获取语言列表，返回语言代码的数组
- * @returns {Array<String>} 
+ * @returns {Array<String>}
  */
-function getLanguageList() {
+export function getLanguageList() {
     let list = [];
     for (let language in languages) {
         list.push(language);
@@ -254,7 +255,7 @@ function getLanguageList() {
  * @param {String} args 格式化的参数
  * @returns {String} 取回并格式化后的字符串
  */
-function lang(key, ...args) {
+export function lang(key, ...args) {
     return langForce(currentLanguage, key, ...args);
 }
 
@@ -267,7 +268,7 @@ function lang(key, ...args) {
  * @param {String} args 格式化的参数
  * @returns {String} 取回并格式化后的字符串
  */
-function langForce(lang, key, ...args) {
+export function langForce(lang, key, ...args) {
     if (
         typeof languages[lang] != 'object' ||
         typeof languages[lang][key] != 'string'
@@ -284,23 +285,40 @@ function langForce(lang, key, ...args) {
  * 设置为某语言，并重新加载页面
  * @param {String} language 语言名称
  */
-function setLanguage(language) {
+export function setLanguage(language) {
     console.log(`Language set to ${language}`);
     writeConfig('language', language);
     e_reloadPage();
 }
 
 /**
- * 更新元素的语言（被动更新）  
- * 根据元素的 `data-lang` 属性匹配键，并将属性 `data-lang-prop` 对应的属性名设置为此值  
+ * 获取当前语言
+ * @returns {String} 当前语言
+ */
+export function getCurrentLanguage() {
+    return currentLanguage;
+}
+
+/**
+ * 设置当前语言（不刷新）
+ * @param {String} language 语言名称
+ */
+export function setCurrentLanguage(language) {
+    currentLanguage = language;
+}
+
+/**
+ * 更新元素的语言（被动更新）
+ * 根据元素的 `data-lang` 属性匹配键，并将属性 `data-lang-prop` 对应的属性名设置为此值
  * **此函数执行较慢，非必要不随意调用！**
  */
-function updateElementLanguages() {
+export function updateElementLanguages() {
     // 这个函数费了我至少一个半小时...改bug太麻烦了
     console.log('Update Element Languages Start');
     console.time('Update Element Languages'); // 耗时操作，计个时不过分吧
     let elements = document.getElementsByTagName('*');
-    for (let i = 0; i < elements.length; i++) { // 遍历每个元素
+    for (let i = 0; i < elements.length; i++) {
+        // 遍历每个元素
         let element = elements[i];
         if (element.dataset?.lang) {
             // 根据data-lang属性来匹配值

@@ -1,3 +1,6 @@
+import { getLanguageList, lang, langForce, setCurrentLanguage, updateElementLanguages } from './lang';
+import { readConfig, writeConfig } from './utils';
+
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
     console.info('Hello World!');
     // 整个彩蛋
@@ -23,7 +26,8 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
         document.getElementById('top-bar').style.visibility = 'visible';
         hideLoading();
     }, 500);
-    currentLanguage = readConfig('language', 'en-US');
+    const currentLanguage = readConfig('language', 'en-US');
+    setCurrentLanguage(currentLanguage);
     document.documentElement.lang = currentLanguage;
     e_toggleTheme(readConfig('theme', 'auto'));
     let langList = getLanguageList();
@@ -43,7 +47,7 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
     });
 });
 
-function showSnackBar(message, id = 'snackbar') {
+export function showSnackBar(message, id = 'snackbar') {
     let snackBarEl = document.getElementById('snackbar-' + id);
     if (snackBarEl === null) {
         snackBarEl = document.createElement('s-snackbar');
@@ -53,14 +57,14 @@ function showSnackBar(message, id = 'snackbar') {
     snackBarEl.innerText = message;
     snackBarEl.show();
 }
-function showLoading() {
+export function showLoading() {
     document.getElementById('top-loading').style.visibility = 'visible';
 }
-function hideLoading() {
+export function hideLoading() {
     document.getElementById('top-loading').style.visibility = 'hidden';
 }
 
-function e_toggleTheme(theme) {
+export function e_toggleTheme(theme) {
     let pageEl = document.getElementById('page');
     let themeIconEl = document.getElementById('theme-icon');
     if (!theme) {
@@ -106,17 +110,17 @@ function e_toggleTheme(theme) {
     showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
 }
 
-function e_reloadPage() {
+export function e_reloadPage() {
     showLoading();
     window.location.reload();
 }
 
-function e_gotoGitHub() {
+export function e_gotoGitHub() {
     showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
 }
 
-function e_boardSelectChange() {
+export function e_boardSelectChange() {
     let selectedIndex = document.getElementById('gameBoardSelector').selectedIndex;
     let boards = document.querySelectorAll('#gameBoard>div');
     boards.forEach(function(currentValue) {
