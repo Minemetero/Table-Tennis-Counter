@@ -16,7 +16,7 @@ if (!String.prototype.format) {
  * @param {*} [defaultValue=null] 找不到时返回的默认值
  * @returns {*} 获取到的配置项
  */
-function readConfig(key, defaultValue = null) {
+export function readConfig(key, defaultValue = null) {
     try {
         let configString = localStorage.getItem('Table-Tennis-Counter');
         if (typeof configString == 'string' && configString !== null) {
@@ -39,7 +39,7 @@ function readConfig(key, defaultValue = null) {
  * @param {String} key 项名
  * @param {*} value 要写入的内容
  */
-function writeConfig(key, value) {
+export function writeConfig(key, value) {
     let configString = localStorage.getItem('Table-Tennis-Counter');
     let config = {};
     if (typeof configString == 'string' && config !== null) {
