@@ -186,7 +186,7 @@ export function updateCurrentMatch() {
                 </s-chip>
             </div>
             <div class="playerScore">${currentMatchScores[player1]}</div>
-            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player1}')">
+            <s-button type="filled-tonal" class="score-button player1">
                 ${lang('ui.gameBoard.score')}
             </s-button>
         </div>
@@ -201,11 +201,13 @@ export function updateCurrentMatch() {
                 </s-chip>
             </div>
             <div class="playerScore">${currentMatchScores[player2]}</div>
-            <s-button type="filled-tonal" class="score-button" onclick="incrementCurrentMatchScore('${player2}')">
+            <s-button type="filled-tonal" class="score-button player2">
                 ${lang('ui.gameBoard.score')}
             </s-button>
         </div>
     `;
+    document.querySelector('.score-button.player1').addEventListener('click', () => incrementCurrentMatchScore(player1));
+    document.querySelector('.score-button.player2').addEventListener('click', () => incrementCurrentMatchScore(player2));
 }
 
 export function updatePlayerScoreList() {

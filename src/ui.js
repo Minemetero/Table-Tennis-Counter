@@ -1,4 +1,4 @@
-import { getLanguageList, lang, langForce, setCurrentLanguage, updateElementLanguages } from './lang';
+import { getLanguageList, lang, langForce, setCurrentLanguage, setLanguage, updateElementLanguages } from './lang';
 import { readConfig, writeConfig } from './utils';
 
 document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
@@ -33,10 +33,10 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
     let langList = getLanguageList();
     let languageMenuEl = document.getElementById('language-menu');
     langList.forEach(function(currentValue) {
-        languageMenuEl.innerHTML += `
-<s-popup-menu-item onclick="setLanguage('${currentValue}')">
-    ${langForce(currentValue, 'language.LanguageName')}
-</s-popup-menu-item>`;
+        const item = document.createElement('s-popup-menu-item');
+        item.innerText = langForce(currentValue, 'language.LanguageName');
+        item.addEventListener('click', () => setLanguage(currentValue));
+        languageMenuEl.appendChild(item);
     });
     updateElementLanguages();
     // Dropdown Input
