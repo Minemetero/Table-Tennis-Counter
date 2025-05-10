@@ -1,7 +1,7 @@
 import { getLanguageList, lang, langForce, setCurrentLanguage, setLanguage, updateElementLanguages } from './lang';
 import { readConfig, writeConfig } from './utils';
 
-document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
+export function e_load() { // 虽然但是，onclick：？
     console.info('Hello World!');
     // 整个彩蛋
     console.log(`
@@ -45,7 +45,7 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
             document.getElementById('rotationalServesGroup').hidden = index !== 1;
         };
     });
-});
+}
 
 export function showSnackBar(message, id = 'snackbar') {
     let snackBarEl = document.getElementById('snackbar-' + id);
