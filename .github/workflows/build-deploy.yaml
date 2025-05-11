@@ -14,6 +14,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: build
+    if: ${{ github.event_name != 'pull_request' && github.ref =='refs/heads/main' }}
 
     permissions:
       pages: write
@@ -35,6 +36,5 @@ jobs:
           path: ./dist
       - name: Deploy to GitHub Pages
         id: deployment
-        if: ${{ github.event_name != 'pull_request' && github.ref =='refs/heads/main' }}
         uses: actions/deploy-pages@v4
 
