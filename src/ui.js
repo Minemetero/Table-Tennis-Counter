@@ -21,11 +21,10 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
 
 欢迎Issue！
     `);
-    setTimeout(function () { // 等Sober执行完
-        document.getElementById('main').style.visibility = 'visible';
-        document.getElementById('top-bar').style.visibility = 'visible';
-        hideLoading();
-    }, 500);
+    document.getElementById('main').style.visibility = 'visible';
+    document.getElementById('top-bar').style.visibility = 'visible';
+    hideLoading();
+
     const currentLanguage = readConfig('language', 'en-US');
     setCurrentLanguage(currentLanguage);
     document.documentElement.lang = currentLanguage;

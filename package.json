@@ -14,5 +14,8 @@
     "devDependencies": {
         "vite": "^6.3.5",
         "vite-plugin-html": "^3.2.2"
+    },
+    "dependencies": {
+        "sober": "~0.7.0"
     }
 }
