@@ -34,7 +34,7 @@
             </s-popup-menu>
             <!-- Theme -->
             <s-tooltip slot="action" data-lang="ui.topbar.theme">
-                <s-icon-button slot="trigger" onclick="e_toggleTheme()">
+                <s-icon-button id="topbar-theme-toggle" slot="trigger">
                     <s-icon type="light_mode" id="theme-icon"></s-icon>
                 </s-icon-button>
             </s-tooltip>
@@ -46,7 +46,7 @@
                     </s-icon-button>
                 </s-tooltip>
                 <!-- GitHub -->
-                <s-popup-menu-item data-lang="ui.topbar.reload" onclick="e_reloadPage()">
+                <s-popup-menu-item id="topbar-reload-page" data-lang="ui.topbar.reload">
                     <s-icon slot="start">
                         <svg viewBox="0 -960 960 960">
                             <path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 
@@ -57,7 +57,7 @@
                     </s-icon>
                 </s-popup-menu-item>
                 <!-- GitHub -->
-                <s-popup-menu-item data-lang="ui.topbar.github" onclick="e_gotoGitHub()">
+                <s-popup-menu-item id="topbar-github-link" data-lang="ui.topbar.github">
                     <s-icon slot="start">
                         <svg viewBox="0 0 1024 1024">
                             <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 
@@ -81,10 +81,10 @@
                     <div class="form-group">
                         <!-- Winning Balls -->
                         <s-text-field id="winBalls" data-lang="ui.setup.winningBalls" data-lang-prop="label">
-                            <s-icon-button onclick="addWinBalls()" slot="end">
+                            <s-icon-button id="setup-winBalls-add" slot="end">
                                 <s-icon type="chevron_up"></s-icon>
                             </s-icon-button>
-                            <s-icon-button onclick="minusWinBalls()" slot="end">
+                            <s-icon-button id="setup-winBalls-minus" slot="end">
                                 <s-icon type="chevron_down"></s-icon>
                             </s-icon-button>
                         </s-text-field>
@@ -92,7 +92,7 @@
                     <div class="form-group" id="playerInputGroup">
                         <!-- Player Name -->
                         <s-text-field id="playerName" data-lang="ui.setup.playerName" data-lang-prop="label">
-                            <s-button type="text" slot="end" data-lang="ui.setup.addPlayer" onclick="addPlayer()">
+                            <s-button type="text" slot="end" id="setup-addPlayer" data-lang="ui.setup.addPlayer">
                                 <s-icon slot="start" type="add"></s-icon>
                             </s-button>
                         </s-text-field>
@@ -118,13 +118,13 @@
                     </div>
                     <!-- Start Game -->
                     <!-- 我也不知道为啥，这里必须手动指定data-lang-prop -->
-                    <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText" onclick="startGame()"></s-button>
+                    <s-button class="start-button" id="startGameButton" data-lang="ui.setup.startGame" data-lang-prop="innerText"></s-button>
                 </div>
             </div>
             
             <div id="gameBoardWrapper">
                 <!-- Tab控制 -->
-                <s-tab class="game-board" id="gameBoardSelector" onchange="e_boardSelectChange()">
+                <s-tab class="game-board" id="gameBoardSelector">
                     <s-tab-item selected="true">
                         <div slot="text" data-lang="ui.gameBoard.tab.score"></div>
                     </s-tab-item>
@@ -145,7 +145,7 @@
                             <div class="result-group">
                                 <p id="result"></p>
                                 <!-- Undo Button -->
-                                <s-button class="undo-button" type="filled-tonal" onclick="undoLastScore()">
+                                <s-button class="undo-button" id="undoButton" type="filled-tonal">
                                     <span data-lang="ui.gameBoard.undo">Undo</span>
                                 </s-button>
                             </div>
@@ -181,12 +181,6 @@
         </div>
     </s-page>
     
-    <!-- 引入Sober界面库 -->
-    <!-- 要让sober的引入在最前面，这样sober才能最先执行 -->
-    <script src="https://unpkg.com/sober@0.7.0/dist/sober.min.js"></script>
-    <script defer src="./assets/js/utils.js"></script>
-    <script defer src="./assets/js/lang.js"></script>
-    <script defer src="./assets/js/script.js"></script>
-    <script defer src="./assets/js/ui.js"></script>
+    <script defer type="module" src="./src/index.js"></script>
 </body>
 </html>

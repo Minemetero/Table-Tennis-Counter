@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => { // 虽然但是，onclick：？
+import { getLanguageList, lang, langForce, setCurrentLanguage, setLanguage, updateElementLanguages } from './lang';
+import { readConfig, writeConfig } from './utils';
+
+export function e_load() { // 虽然但是，onclick：？
     console.info('Hello World!');
     // 整个彩蛋
     console.log(`
@@ -18,21 +21,21 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
 
 欢迎Issue！
     `);
-    setTimeout(function () { // 等Sober执行完
-        document.getElementById('main').style.visibility = 'visible';
-        document.getElementById('top-bar').style.visibility = 'visible';
-        hideLoading();
-    }, 500);
-    currentLanguage = readConfig('language', 'en-US');
+    document.getElementById('main').style.visibility = 'visible';
+    document.getElementById('top-bar').style.visibility = 'visible';
+    hideLoading();
+
+    const currentLanguage = readConfig('language', 'en-US');
+    setCurrentLanguage(currentLanguage);
     document.documentElement.lang = currentLanguage;
     e_toggleTheme(readConfig('theme', 'auto'));
     let langList = getLanguageList();
     let languageMenuEl = document.getElementById('language-menu');
     langList.forEach(function(currentValue) {
-        languageMenuEl.innerHTML += `
-<s-popup-menu-item onclick="setLanguage('${currentValue}')">
-    ${langForce(currentValue, 'language.LanguageName')}
-</s-popup-menu-item>`;
+        const item = document.createElement('s-popup-menu-item');
+        item.innerText = langForce(currentValue, 'language.LanguageName');
+        item.addEventListener('click', () => setLanguage(currentValue));
+        languageMenuEl.appendChild(item);
     });
     updateElementLanguages();
     // Dropdown Input
@@ -41,9 +44,9 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
             document.getElementById('rotationalServesGroup').hidden = index !== 1;
         };
     });
-});
+}
 
-function showSnackBar(message, id = 'snackbar') {
+export function showSnackBar(message, id = 'snackbar') {
     let snackBarEl = document.getElementById('snackbar-' + id);
     if (snackBarEl === null) {
         snackBarEl = document.createElement('s-snackbar');
@@ -53,14 +56,14 @@ function showSnackBar(message, id = 'snackbar') {
     snackBarEl.innerText = message;
     snackBarEl.show();
 }
-function showLoading() {
+export function showLoading() {
     document.getElementById('top-loading').style.visibility = 'visible';
 }
-function hideLoading() {
+export function hideLoading() {
     document.getElementById('top-loading').style.visibility = 'hidden';
 }
 
-function e_toggleTheme(theme) {
+export function e_toggleTheme(theme) {
     let pageEl = document.getElementById('page');
     let themeIconEl = document.getElementById('theme-icon');
     if (!theme) {
@@ -106,17 +109,17 @@ function e_toggleTheme(theme) {
     showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
 }
 
-function e_reloadPage() {
+export function e_reloadPage() {
     showLoading();
     window.location.reload();
 }
 
-function e_gotoGitHub() {
+export function e_gotoGitHub() {
     showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
 }
 
-function e_boardSelectChange() {
+export function e_boardSelectChange() {
     let selectedIndex = document.getElementById('gameBoardSelector').selectedIndex;
     let boards = document.querySelectorAll('#gameBoard>div');
     boards.forEach(function(currentValue) {
