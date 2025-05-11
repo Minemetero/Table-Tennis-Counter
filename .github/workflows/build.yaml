@@ -13,6 +13,7 @@ on:
         description: 'The digest of the uploaded artifact'
         value: ${{ jobs.build.outputs.artifact-digest }}
   workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
