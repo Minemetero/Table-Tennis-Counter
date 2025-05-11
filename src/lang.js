@@ -337,20 +337,28 @@ export function updateElementLanguages() {
             } else {
                 // 如果元素子节点不止一个（除了文本还包含其他元素）
                 // 则遍历所有子节点，找到文本节点并设置其值
-                // 为了防止影子根被误认成文本必须倒序遍历
-                // 血泪的教训啊
-                for (let j = element.childNodes.length - 1; j >= 0; j--) {
+                let foundTextNode = false;
+                // 经测试影子根不会被误认成文本，无需倒序遍历
+                for (let j = 0; j <= element.childNodes.length - 1; j++) {
                     if (element.childNodes[j].nodeName === '#text') {
                         element.childNodes[j].nodeValue = lang(
                             element.dataset.lang
                         );
-                        console.debug(
-                            `Update Element Languages: key '${element.dataset.lang}' %o`,
-                            element
-                        );
+                        foundTextNode = true;
                         break;
                     }
                 }
+                // 如果没有找到文本节点，则在最后添加一个文本节点
+                if (!foundTextNode) {
+                    let textNode = document.createTextNode(
+                        lang(element.dataset.lang)
+                    );
+                    element.appendChild(textNode);
+                }
+                console.debug(
+                    `Update Element Languages: key '${element.dataset.lang}' %o`,
+                    element
+                );
             }
         }
     }
