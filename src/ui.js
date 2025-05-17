@@ -46,7 +46,7 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
     });
 }
 
-export function showSnackBar(message, id = 'snackbar') {
+export function showSnackBar(message, id = 'snackbar', type = 'info') {
     let snackBarEl = document.getElementById('snackbar-' + id);
     if (snackBarEl === null) {
         snackBarEl = document.createElement('s-snackbar');
@@ -54,6 +54,7 @@ export function showSnackBar(message, id = 'snackbar') {
         document.getElementById('tooltips').appendChild(snackBarEl);
     }
     snackBarEl.innerText = message;
+    snackBarEl.type = type;
     snackBarEl.show();
 }
 export function showLoading() {
@@ -106,7 +107,7 @@ export function e_toggleTheme(theme) {
             break;
     }
     writeConfig('theme', theme);
-    showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
+    showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme', 'info');
 }
 
 export function e_reloadPage() {
@@ -115,7 +116,7 @@ export function e_reloadPage() {
 }
 
 export function e_gotoGitHub() {
-    showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
+    showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips', 'info');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
 }
 
