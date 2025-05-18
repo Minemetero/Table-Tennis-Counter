@@ -32,7 +32,7 @@ export function minusWinBalls() {
 export function addPlayer() {
     const playerName = document.getElementById('playerName').value.trim();
     if (playerName === '' || players.includes(playerName)) {
-        showSnackBar(lang('ui.tooltip.playerNameError'), 'PlayerNameError');
+        showSnackBar(lang('ui.tooltip.playerNameError'), 'PlayerNameError', 'error');
         return;
     }
     players.push(playerName);
@@ -56,13 +56,13 @@ export function updatePlayerList() {
 export function startGame() {
     showLoading();
     if (players.length < 2) {
-        showSnackBar(lang('ui.tooltip.playerAmountError'), 'PlayerAmountError');
+        showSnackBar(lang('ui.tooltip.playerAmountError'), 'PlayerAmountError', 'error');
         hideLoading();
         return;
     }
     winBalls = parseInt(document.getElementById('winBalls').value);
     if (isNaN(winBalls) || winBalls <= 0) {
-        showSnackBar(lang('ui.tooltip.winningBallsError'), 'WinningBallsError');
+        showSnackBar(lang('ui.tooltip.winningBallsError'), 'WinningBallsError', 'error');
         hideLoading();
         return;
     }
@@ -71,14 +71,15 @@ export function startGame() {
         document.getElementById('rotationalServes').value
     );
     if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
-        showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError');
+        showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError', 'error');
         hideLoading();
         return;
     }
     if (serveRule === 1 && (isNaN(rotationalServes) || rotationalServes <= 0)) {
         showSnackBar(
             lang('ui.tooltip.rotationalServesError'),
-            'RotationalServesError'
+            'RotationalServesError',
+            'error'
         );
         hideLoading();
         return;
@@ -184,8 +185,8 @@ export function updateCurrentMatch() {
             <div class="playerTags">
                 <s-chip class="player-serve ${
                     serveRule === 1 && currentServe == 0 ? 'active' : ''
-                }" type="filled-tonal">
-                    <s-icon slot="start" type="done"></s-icon>
+                }" type="elevated">
+                    <s-icon slot="start" name="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
             </div>
@@ -199,8 +200,8 @@ export function updateCurrentMatch() {
             <div class="playerTags">
                 <s-chip class="player-serve ${
                     serveRule === 1 && currentServe == 1 ? 'active' : ''
-                }" type="filled-tonal">
-                    <s-icon slot="start" type="done"></s-icon>
+                }" type="elevated">
+                    <s-icon slot="start" name="done"></s-icon>
                     ${lang('ui.gameBoard.serve')}
                 </s-chip>
             </div>
@@ -284,7 +285,7 @@ export function resetScores() {
 
 export function undoLastScore() {
     if (!lastScoringPlayer) {
-        showSnackBar(lang('ui.tooltip.noScoreToUndo'), 'NoScoreToUndo');
+        showSnackBar(lang('ui.tooltip.noScoreToUndo'), 'NoScoreToUndo', 'warning');
         return;
     }
 
