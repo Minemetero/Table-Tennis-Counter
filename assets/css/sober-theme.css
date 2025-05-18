@@ -1,0 +1,91 @@
+/* 
+Copied from sober 0.7.0
+Reference: https://github.com/apprat/sober/blob/01392aa019b4c0e35ed353a3652b97bd40526ff2/src/page.ts
+ */
+
+/* 新版本 Sober 背景色太黑，故取旧版主题覆盖 */
+/* 这也可以防止 Sober 将来乱改颜色 */
+
+/*
+Sober 在 Material You 的道路上感觉有点走偏了
+                            -- lingbopro
+ */
+
+s-page,
+#page {
+    --s-color-scrim: #000000;
+    --s-color-primary: #00687b;
+    --s-color-on-primary: #ffffff;
+    --s-color-primary-container: #aeecff;
+    --s-color-on-primary-container: #001f26;
+    --s-color-secondary: #4b6269;
+    --s-color-on-secondary: #ffffff;
+    --s-color-secondary-container: #cee7ef;
+    --s-color-on-secondary-container: #061f25;
+    --s-color-tertiary: #575c7e;
+    --s-color-on-tertiary: #ffffff;
+    --s-color-tertiary-container: #dee1ff;
+    --s-color-on-tertiary-container: #141937;
+    --s-color-error: #ba1a1a;
+    --s-color-on-error: #ffffff;
+    --s-color-error-container: #ffdad6;
+    --s-color-on-error-container: #410002;
+    --s-color-background: #fbfcfe;
+    --s-color-on-background: #191c1d;
+    --s-color-outline: #70797c;
+    --s-color-outline-variant: #bfc8cb;
+    --s-color-surface: #fbfcfe;
+    --s-color-on-surface: #191c1d;
+    --s-color-surface-variant: #dbe4e7;
+    --s-color-on-surface-variant: #3f484b;
+    --s-color-inverse-surface: #2e3132;
+    --s-color-inverse-on-surface: #eff1f2;
+    --s-color-inverse-primary: #56d6f5;
+    --s-color-surface-container: #eceeef;
+    --s-color-surface-container-high: #f2f4f5;
+    --s-color-surface-container-highest: #ffffff;
+    --s-color-surface-container-low: #e6e8e9;
+    --s-color-surface-container-lowest: #e1e3e4;
+    --s-color-dark-primary: #56d6f5;
+    --s-color-dark-on-primary: #003641;
+    --s-color-dark-primary-container: #004e5d;
+    --s-color-dark-on-primary-container: #aeecff;
+    --s-color-dark-secondary: #b2cbd3;
+    --s-color-dark-on-secondary: #1d343a;
+    --s-color-dark-secondary-container: #344a51;
+    --s-color-dark-on-secondary-container: #cee7ef;
+    --s-color-dark-tertiary: #bfc4eb;
+    --s-color-dark-on-tertiary: #292e4d;
+    --s-color-dark-tertiary-container: #3f4565;
+    --s-color-dark-on-tertiary-container: #dee1ff;
+    --s-color-dark-error: #ffb4ab;
+    --s-color-dark-on-error: #690005;
+    --s-color-dark-error-container: #93000a;
+    --s-color-dark-on-error-container: #ffb4ab;
+    --s-color-dark-background: #191c1d;
+    --s-color-dark-on-background: #e1e3e4;
+    --s-color-dark-outline: #899295;
+    --s-color-dark-outline-variant: #3f484b;
+    --s-color-dark-surface: #191c1d;
+    --s-color-dark-on-surface: #e1e3e4;
+    --s-color-dark-surface-variant: #3f484b;
+    --s-color-dark-on-surface-variant: #bfc8cb;
+    --s-color-dark-inverse-surface: #e1e3e4;
+    --s-color-dark-inverse-on-surface: #2e3132;
+    --s-color-dark-inverse-primary: #00687b;
+    --s-color-dark-surface-container: #1d2021;
+    --s-color-dark-surface-container-high: #272a2c;
+    --s-color-dark-surface-container-highest: #323536;
+    --s-color-dark-surface-container-low: #191c1d;
+    --s-color-dark-surface-container-lowest: #0b0f10;
+    --s-elevation-level1: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    --s-elevation-level2: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    --s-elevation-level3: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    --s-elevation-level4: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
+        0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+    --s-elevation-level5: 0 10px 14px -6px rgba(0, 0, 0, 0.2),
+        0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);
+}
