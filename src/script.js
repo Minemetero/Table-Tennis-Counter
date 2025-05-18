@@ -1,5 +1,5 @@
 import { lang } from './lang';
-import { hideLoading, showLoading, showSnackBar } from './ui';
+import { hideLoading, showLoading, showSnackBar, showWinnerConfetti } from './ui';
 
 let players = [];
 let totalScores = {};
@@ -146,6 +146,10 @@ export function incrementCurrentMatchScore(playerName) {
             )
         );
         disableScoreButtons();
+        
+        // Wining Animation
+        showWinnerConfetti();
+        
         setTimeout(() => {
             document.getElementById('result').innerText = '';
             updatePlayerScoreList();
