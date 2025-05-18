@@ -1,3 +1,4 @@
+import confetti from 'canvas-confetti';
 import { getLanguageList, lang, langForce, setCurrentLanguage, setLanguage, updateElementLanguages } from './lang';
 import { readConfig, writeConfig } from './utils';
 
@@ -46,7 +47,7 @@ repo: https://github.com/Minemetero/Table-Tennis-Counter
     });
 }
 
-export function showSnackBar(message, id = 'snackbar') {
+export function showSnackBar(message, id = 'snackbar', type = 'info') {
     let snackBarEl = document.getElementById('snackbar-' + id);
     if (snackBarEl === null) {
         snackBarEl = document.createElement('s-snackbar');
@@ -54,6 +55,7 @@ export function showSnackBar(message, id = 'snackbar') {
         document.getElementById('tooltips').appendChild(snackBarEl);
     }
     snackBarEl.innerText = message;
+    snackBarEl.type = type;
     snackBarEl.show();
 }
 export function showLoading() {
@@ -61,6 +63,46 @@ export function showLoading() {
 }
 export function hideLoading() {
     document.getElementById('top-loading').style.visibility = 'hidden';
+}
+
+/**
+ * @param {number} particleRatio
+ * @param {confetti.Options} [opts]
+ */
+function fireConfetti(particleRatio, opts = {}) {
+    const count = 200;
+    const defaults = {
+        origin: { y: 0.7 },
+    };
+    confetti({
+        ...defaults,
+        ...opts,
+        particleCount: Math.floor(count * particleRatio),
+    });
+}
+export function showWinnerConfetti() {
+    fireConfetti(0.25, {
+        spread: 26,
+        startVelocity: 55,
+    });
+    fireConfetti(0.2, {
+        spread: 60,
+    });
+    fireConfetti(0.35, {
+        spread: 100,
+        decay: 0.91,
+        scalar: 0.8,
+    });
+    fireConfetti(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+        scalar: 1.2,
+    });
+    fireConfetti(0.1, {
+        spread: 120,
+        startVelocity: 45,
+    });
 }
 
 export function e_toggleTheme(theme) {
@@ -106,7 +148,7 @@ export function e_toggleTheme(theme) {
             break;
     }
     writeConfig('theme', theme);
-    showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme');
+    showSnackBar(lang('ui.tooltip.themeSetTo', lang(`ui.theme.themeName.${theme}`)), 'Theme', 'info');
 }
 
 export function e_reloadPage() {
@@ -115,7 +157,7 @@ export function e_reloadPage() {
 }
 
 export function e_gotoGitHub() {
-    showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips');
+    showSnackBar(lang('ui.tooltip.repoTip'), 'RepoTips', 'info');
     window.open('https://github.com/Minemetero/Table-Tennis-Counter', '_blank');
 }
 
