@@ -48,4 +48,7 @@ This project uses or references the following open source projects:
 - **Sober.js** [[Official Website]](https://soberjs.com) [[GitHub]](https://github.com/apprat/sober)  
   Sober is a Web Component UI component library that references the Google Material You design specification.
 
+- **canvas-confetti** [[Official Website]](https://catdad.github.io/canvas-confetti/) [[GitHub]](https://github.com/catdad/canvas-confetti)  
+  🎉 performant confetti animation in the browser
+
 Thanks to these projects and their authors.  
