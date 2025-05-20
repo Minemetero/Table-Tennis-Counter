@@ -109,13 +109,31 @@ export function startNewMatch() {
 }
 
 export function checkMatchPoint(playerName) {
-    if (currentMatchScores[playerName] === winBalls - 1) {
-        // Player is at match point
+    const strictMode = document.getElementById('strictMode').checked;
+    const playerScore = currentMatchScores[playerName];
+    // Get the other player's name
+    const otherPlayer = Object.keys(currentMatchScores).find(p => p !== playerName);
+    const otherScore = currentMatchScores[otherPlayer];
+
+    let isMatchPoint = false;
+
+    if (strictMode) {
+        if (playerScore >= 10 && otherScore >= 10) {
+            // Both at least 10, match point if leading by 1
+            isMatchPoint = Math.abs(playerScore - otherScore) === 1 && playerScore > otherScore;
+        } else {
+            // Normal match point
+            isMatchPoint = playerScore === winBalls - 1;
+        }
+    } else {
+        isMatchPoint = playerScore === winBalls - 1;
+    }
+
+    if (isMatchPoint) {
         document.getElementById('result').innerText = lang(
             'ui.gameBoard.matchPoint',
             playerName
         );
-        // Automatically clear the match point message after 1.5 seconds
         setTimeout(() => {
             document.getElementById('result').innerText = '';
         }, 1500);
