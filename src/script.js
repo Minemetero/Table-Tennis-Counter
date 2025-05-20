@@ -284,22 +284,35 @@ export function updateMatchOrderList() {
 }
 
 export function updateHistoryList() {
-    const historyList = document.getElementById('historyList');
-    historyList.innerHTML = '';
+    const historyTable = document.getElementById('historyTable');
+    const tbody = historyTable.querySelector('s-tbody');
+    tbody.innerHTML = '';
 
     matchHistory.forEach((match, index) => {
-        const li = document.createElement('li');
-
         // Extract the two players from the match string
         const matchParts = match.split(' vs ');
         const player1 = matchParts[0].trim();
         const player2 = matchParts[1].split(':')[0].trim();
 
-        // Only show scores for these two players
         const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
+        // Extract winner
+        const afterColon = match.substring(match.lastIndexOf(':') + 1).trim();
+        const winnerParts = afterColon.split(' ');
+        const winner = winnerParts.length > 1 ? winnerParts.slice(0, -1).join(' ') : afterColon;
 
-        li.textContent = `${match}, ${scoreLine}`;
-        historyList.appendChild(li);
+        const matchUp = `${player1} vs ${player2}`;
+
+        const tr = document.createElement('s-tr');
+        const tdMatch = document.createElement('s-td');
+        tdMatch.textContent = matchUp;
+        const tdScore = document.createElement('s-td');
+        tdScore.textContent = scoreLine;
+        const tdWinner = document.createElement('s-td');
+        tdWinner.textContent = winner;
+        tr.appendChild(tdMatch);
+        tr.appendChild(tdScore);
+        tr.appendChild(tdWinner);
+        tbody.appendChild(tr);
     });
 }
 

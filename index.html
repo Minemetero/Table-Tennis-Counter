@@ -163,7 +163,18 @@
                     <div id="board-history">
                         <div id="matchHistory">
                             <h2 data-lang="ui.gameBoard.matchHistory"></h2>
-                            <ul id="historyList"></ul>
+                            <s-table id="historyTable" style="overflow: auto; display: block; width: 60%">
+                                <s-thead>
+                                    <s-tr>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.match"></s-th>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.score"></s-th>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.winner"></s-th>
+                                    </s-tr>
+                                </s-thead>
+                                <s-tbody>
+                                    <!-- Rows will be populated by JS -->
+                                </s-tbody>
+                            </s-table>
                         </div>
                     </div>
                     <!-- Tab：信息 -->

@@ -49,6 +49,9 @@ export const languages = {
         'ui.tooltip.rotationalServesError': 'Please enter a valid number of rotational serves number',
         'ui.tooltip.repoTip': 'Issues and PRs are welcome!!!',
         'ui.tooltip.noScoreToUndo': 'No score to undo',
+        'ui.gameBoard.matchHistory.match': 'Match',
+        'ui.gameBoard.matchHistory.score': 'Score',
+        'ui.gameBoard.matchHistory.winner': 'Winner',
     },
     'zh-CN': {
         'language.LanguageName': '简体中文',
@@ -93,6 +96,9 @@ export const languages = {
         'ui.tooltip.rotationalServesError': '请填入有效的轮换发球数',
         'ui.tooltip.repoTip': '欢迎 Issue 和 PR！！！',
         'ui.tooltip.noScoreToUndo': '没有可撤销的分数',
+        'ui.gameBoard.matchHistory.match': '比赛',
+        'ui.gameBoard.matchHistory.score': '比分',
+        'ui.gameBoard.matchHistory.winner': '获胜者',
     },
     'zh-TW': {
         'language.LanguageName': '繁體中文',
@@ -137,6 +143,9 @@ export const languages = {
         'ui.tooltip.rotationalServesError': '請輸入有效的輪換發球數',
         'ui.tooltip.repoTip': '歡迎提交 Issue 和 PR！！！',
         'ui.tooltip.noScoreToUndo': '沒有可撤銷的分數',
+        'ui.gameBoard.matchHistory.match': '比賽',
+        'ui.gameBoard.matchHistory.score': '比分',
+        'ui.gameBoard.matchHistory.winner': '獲勝者',
     },
     'ja-JP': {
         'language.LanguageName': '日本語',
@@ -181,6 +190,9 @@ export const languages = {
         'ui.tooltip.rotationalServesError': '有効なサーブ交代数を入力してください',
         'ui.tooltip.repoTip': 'IssueやPRをお待ちしています！！！',
         'ui.tooltip.noScoreToUndo': '取り消すスコアはありません',
+        'ui.gameBoard.matchHistory.match': '試合',
+        'ui.gameBoard.matchHistory.score': 'スコア',
+        'ui.gameBoard.matchHistory.winner': '勝者',
     },
     'el-GR': {
         'language.LanguageName': 'Ελληνικά',
@@ -225,6 +237,9 @@ export const languages = {
         'ui.tooltip.rotationalServesError': 'Παρακαλώ εισάγετε εναν εγκυρο αριθμό περιστροφικών σερβις',
         'ui.tooltip.repoTip': 'Για κάθε πρόβλημα ή PRs επικοινωνήστε μαζί μας!!!',
         'ui.tooltip.noScoreToUndo': 'Δεν υπάρχει σκορ για αναίρεση',
+        'ui.gameBoard.matchHistory.match': 'Αγώνας',
+        'ui.gameBoard.matchHistory.score': 'Σκορ',
+        'ui.gameBoard.matchHistory.winner': 'Νικητής',
     },
 };
 /**
