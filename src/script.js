@@ -66,10 +66,9 @@ export function startGame() {
         hideLoading();
         return;
     }
+    const strictMode = document.getElementById('strictMode').checked;
     serveRule = parseInt(document.getElementById('serveRule').selectedIndex);
-    rotationalServes = parseInt(
-        document.getElementById('rotationalServes').value
-    );
+    rotationalServes = parseInt(document.getElementById('rotationalServes').value);
     if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
         showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError', 'error');
         hideLoading();
@@ -83,6 +82,10 @@ export function startGame() {
         );
         hideLoading();
         return;
+    }
+    if (strictMode) {
+        serveRule = 1;
+        rotationalServes = 2;
     }
     if (serveRule === 1) {
         currentServe = 0;
@@ -126,7 +129,18 @@ export function incrementCurrentMatchScore(playerName) {
 
     currentMatchScores[playerName]++;
     rotationalServesCounter++;
-    if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
+    const strictMode = document.getElementById('strictMode').checked;
+    let currentRotationalServes = rotationalServes;
+    if (strictMode) {
+        // If both players have 10 or more, change serve every ball
+        const scores = Object.values(currentMatchScores);
+        if (scores[0] >= 10 && scores[1] >= 10) {
+            currentRotationalServes = 1;
+        } else {
+            currentRotationalServes = 2;
+        }
+    }
+    if (serveRule === 1 && rotationalServesCounter >= currentRotationalServes) {
         rotationalServesCounter = 0;
         currentServe = currentServe === 0 ? 1 : 0;
     }
@@ -135,9 +149,6 @@ export function incrementCurrentMatchScore(playerName) {
 
     // Get the other player's name
     const otherPlayer = players[currentMatch[0]] === playerName ? players[currentMatch[1]] : players[currentMatch[0]];
-    
-    // Check if strict mode is enabled
-    const strictMode = document.getElementById('strictMode').checked;
     
     // Check win condition based on strict mode
     const hasWon = strictMode 
