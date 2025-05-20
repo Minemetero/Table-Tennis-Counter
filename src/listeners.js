@@ -1,5 +1,5 @@
 import { addPlayer, addWinBalls, minusWinBalls, startGame, undoLastScore } from './script';
-import { e_boardSelectChange, e_gotoGitHub, e_load, e_reloadPage, e_toggleTheme } from './ui';
+import { e_boardSelectChange, e_gotoGitHub, e_load, e_reloadPage, e_strictModeChange, e_toggleTheme } from './ui';
 
 export function listen() {
     document.addEventListener('DOMContentLoaded', () => {
@@ -29,12 +29,5 @@ export function registerListeners() {
     // Strict Mode: set winBalls to 11 and disable the field when checked
     const strictModeCheckbox = geb('strictMode');
     const winBallsField = geb('winBalls');
-    strictModeCheckbox.addEventListener('change', function () {
-        if (strictModeCheckbox.checked) {
-            winBallsField.value = 11;
-            winBallsField.disabled = true;
-        } else {
-            winBallsField.disabled = false;
-        }
-    });
+    strictModeCheckbox.addEventListener('change', () => e_strictModeChange(strictModeCheckbox, winBallsField));
 }

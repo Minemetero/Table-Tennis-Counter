@@ -171,3 +171,12 @@ export function e_boardSelectChange() {
         boards[selectedIndex].classList.add('active');
     }
 }
+
+export function e_strictModeChange(strictModeCheckbox, winBallsField) {
+    if (strictModeCheckbox.checked) {
+        winBallsField.value = 11;
+        winBallsField.disabled = true;
+    } else {
+        winBallsField.disabled = false;
+    }
+}
