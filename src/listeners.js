@@ -25,4 +25,16 @@ export function registerListeners() {
 
     geb('gameBoardSelector').addEventListener('change', e_boardSelectChange);
     geb('undoButton').addEventListener('click', undoLastScore);
+
+    // Strict Mode: set winBalls to 11 and disable the field when checked
+    const strictModeCheckbox = geb('strictMode');
+    const winBallsField = geb('winBalls');
+    strictModeCheckbox.addEventListener('change', function () {
+        if (strictModeCheckbox.checked) {
+            winBallsField.value = 11;
+            winBallsField.disabled = true;
+        } else {
+            winBallsField.disabled = false;
+        }
+    });
 }

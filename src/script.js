@@ -132,7 +132,21 @@ export function incrementCurrentMatchScore(playerName) {
     }
     checkMatchPoint(playerName);
     updateCurrentMatch();
-    if (currentMatchScores[playerName] >= winBalls) {
+
+    // Get the other player's name
+    const otherPlayer = players[currentMatch[0]] === playerName ? players[currentMatch[1]] : players[currentMatch[0]];
+    
+    // Check if strict mode is enabled
+    const strictMode = document.getElementById('strictMode').checked;
+    
+    // Check win condition based on strict mode
+    const hasWon = strictMode 
+        ? (currentMatchScores[playerName] >= winBalls && 
+           (currentMatchScores[playerName] - currentMatchScores[otherPlayer] >= 2 || 
+            currentMatchScores[playerName] >= winBalls + 2))
+        : currentMatchScores[playerName] >= winBalls;
+
+    if (hasWon) {
         totalScores[playerName]++;
         document.getElementById('result').innerText = lang(
             'ui.gameBoard.winMessage',
