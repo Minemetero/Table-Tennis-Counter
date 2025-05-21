@@ -172,7 +172,9 @@ export function e_boardSelectChange() {
     }
 }
 
-export function e_strictModeChange(strictModeCheckbox, winBallsField) {
+export function e_strictModeChange() {
+    const strictModeCheckbox = document.getElementById('strictMode');
+    const winBallsField = document.getElementById('winBalls');
     const serveRulePicker = document.getElementById('serveRule');
     const rotationalServesField = document.getElementById('rotationalServes');
     const rotationalServesGroup = document.getElementById('rotationalServesGroup');
