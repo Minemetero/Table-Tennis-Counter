@@ -66,10 +66,9 @@ export function startGame() {
         hideLoading();
         return;
     }
+    const strictMode = document.getElementById('strictMode').checked;
     serveRule = parseInt(document.getElementById('serveRule').selectedIndex);
-    rotationalServes = parseInt(
-        document.getElementById('rotationalServes').value
-    );
+    rotationalServes = parseInt(document.getElementById('rotationalServes').value);
     if (isNaN(serveRule) || serveRule < 0 || serveRule > 1) {
         showSnackBar(lang('ui.tooltip.serveRuleError'), 'ServeRuleError', 'error');
         hideLoading();
@@ -83,6 +82,10 @@ export function startGame() {
         );
         hideLoading();
         return;
+    }
+    if (strictMode) {
+        serveRule = 1;
+        rotationalServes = 2;
     }
     if (serveRule === 1) {
         currentServe = 0;
@@ -106,13 +109,31 @@ export function startNewMatch() {
 }
 
 export function checkMatchPoint(playerName) {
-    if (currentMatchScores[playerName] === winBalls - 1) {
-        // Player is at match point
+    const strictMode = document.getElementById('strictMode').checked;
+    const playerScore = currentMatchScores[playerName];
+    // Get the other player's name
+    const otherPlayer = Object.keys(currentMatchScores).find(p => p !== playerName);
+    const otherScore = currentMatchScores[otherPlayer];
+
+    let isMatchPoint = false;
+
+    if (strictMode) {
+        if (playerScore >= 10 && otherScore >= 10) {
+            // Both at least 10, match point if leading by 1
+            isMatchPoint = Math.abs(playerScore - otherScore) === 1 && playerScore > otherScore;
+        } else {
+            // Normal match point
+            isMatchPoint = playerScore === winBalls - 1;
+        }
+    } else {
+        isMatchPoint = playerScore === winBalls - 1;
+    }
+
+    if (isMatchPoint) {
         document.getElementById('result').innerText = lang(
             'ui.gameBoard.matchPoint',
             playerName
         );
-        // Automatically clear the match point message after 1.5 seconds
         setTimeout(() => {
             document.getElementById('result').innerText = '';
         }, 1500);
@@ -126,13 +147,35 @@ export function incrementCurrentMatchScore(playerName) {
 
     currentMatchScores[playerName]++;
     rotationalServesCounter++;
-    if (serveRule === 1 && rotationalServesCounter >= rotationalServes) {
+    const strictMode = document.getElementById('strictMode').checked;
+    let currentRotationalServes = rotationalServes;
+    if (strictMode) {
+        // If both players have 10 or more, change serve every ball
+        const scores = Object.values(currentMatchScores);
+        if (scores[0] >= 10 && scores[1] >= 10) {
+            currentRotationalServes = 1;
+        } else {
+            currentRotationalServes = 2;
+        }
+    }
+    if (serveRule === 1 && rotationalServesCounter >= currentRotationalServes) {
         rotationalServesCounter = 0;
         currentServe = currentServe === 0 ? 1 : 0;
     }
     checkMatchPoint(playerName);
     updateCurrentMatch();
-    if (currentMatchScores[playerName] >= winBalls) {
+
+    // Get the other player's name
+    const otherPlayer = players[currentMatch[0]] === playerName ? players[currentMatch[1]] : players[currentMatch[0]];
+    
+    // Check win condition based on strict mode
+    const hasWon = strictMode 
+        ? (currentMatchScores[playerName] >= winBalls && 
+           (currentMatchScores[playerName] - currentMatchScores[otherPlayer] >= 2 || 
+            currentMatchScores[playerName] >= winBalls + 2))
+        : currentMatchScores[playerName] >= winBalls;
+
+    if (hasWon) {
         totalScores[playerName]++;
         document.getElementById('result').innerText = lang(
             'ui.gameBoard.winMessage',
@@ -241,22 +284,35 @@ export function updateMatchOrderList() {
 }
 
 export function updateHistoryList() {
-    const historyList = document.getElementById('historyList');
-    historyList.innerHTML = '';
+    const historyTable = document.getElementById('historyTable');
+    const tbody = historyTable.querySelector('s-tbody');
+    tbody.innerHTML = '';
 
     matchHistory.forEach((match, index) => {
-        const li = document.createElement('li');
-
         // Extract the two players from the match string
         const matchParts = match.split(' vs ');
         const player1 = matchParts[0].trim();
         const player2 = matchParts[1].split(':')[0].trim();
 
-        // Only show scores for these two players
         const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
+        // Extract winner
+        const afterColon = match.substring(match.lastIndexOf(':') + 1).trim();
+        const winnerParts = afterColon.split(' ');
+        const winner = winnerParts.length > 1 ? winnerParts.slice(0, -1).join(' ') : afterColon;
 
-        li.textContent = `${match}, ${scoreLine}`;
-        historyList.appendChild(li);
+        const matchUp = `${player1} vs ${player2}`;
+
+        const tr = document.createElement('s-tr');
+        const tdMatch = document.createElement('s-td');
+        tdMatch.textContent = matchUp;
+        const tdScore = document.createElement('s-td');
+        tdScore.textContent = scoreLine;
+        const tdWinner = document.createElement('s-td');
+        tdWinner.textContent = winner;
+        tr.appendChild(tdMatch);
+        tr.appendChild(tdScore);
+        tr.appendChild(tdWinner);
+        tbody.appendChild(tr);
     });
 }
 
