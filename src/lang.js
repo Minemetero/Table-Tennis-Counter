@@ -380,13 +380,6 @@ export function updateElementLanguages() {
                     element
                 );
             }
-        } else if (element.dataset?.langKey) {
-            // Handle elements with data-lang-key attribute (like s-checkbox)
-            element.innerText = lang(element.dataset.langKey);
-            console.debug(
-                `Update Element Languages: key '${element.dataset.langKey}' %o`,
-                element
-            );
         }
     }
     console.timeEnd('Update Element Languages');
