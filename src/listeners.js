@@ -1,5 +1,5 @@
 import { addPlayer, addWinBalls, minusWinBalls, startGame, undoLastScore } from './script';
-import { e_boardSelectChange, e_gotoGitHub, e_load, e_reloadPage, e_toggleTheme } from './ui';
+import { e_boardSelectChange, e_gotoGitHub, e_load, e_reloadPage, e_strictModeChange, e_toggleTheme } from './ui';
 
 export function listen() {
     document.addEventListener('DOMContentLoaded', () => {
@@ -25,4 +25,6 @@ export function registerListeners() {
 
     geb('gameBoardSelector').addEventListener('change', e_boardSelectChange);
     geb('undoButton').addEventListener('click', undoLastScore);
+
+    geb('strictMode').addEventListener('change', e_strictModeChange);
 }

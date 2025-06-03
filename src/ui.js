@@ -171,3 +171,33 @@ export function e_boardSelectChange() {
         boards[selectedIndex].classList.add('active');
     }
 }
+
+export function e_strictModeChange() {
+    const strictModeCheckbox = document.getElementById('strictMode');
+    const winBallsField = document.getElementById('winBalls');
+    const serveRulePicker = document.getElementById('serveRule');
+    const rotationalServesField = document.getElementById('rotationalServes');
+    const rotationalServesGroup = document.getElementById('rotationalServesGroup');
+    const items = serveRulePicker.querySelectorAll('s-picker-item');
+    let inTurnValue = items[1]?.getAttribute('value');
+
+    if (strictModeCheckbox.checked) {
+        winBallsField.value = 11;
+        winBallsField.disabled = true;
+        // Force serve rule to 'in turn' (second item) and disable
+        if (items[1]) {
+            serveRulePicker.value = inTurnValue;
+        }
+        serveRulePicker.disabled = true;
+        // Force rotational serves to 2 and disable
+        rotationalServesField.value = 2;
+        rotationalServesField.disabled = true;
+        rotationalServesGroup.hidden = false;
+    } else {
+        winBallsField.disabled = false;
+        serveRulePicker.disabled = false;
+        rotationalServesField.disabled = false;
+        // Show/hide rotational serves group based on serve rule
+        rotationalServesGroup.hidden = serveRulePicker.value !== inTurnValue;
+    }
+}

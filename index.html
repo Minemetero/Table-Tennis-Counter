@@ -101,15 +101,20 @@
                     <div class="form-group">
                         <!-- Sober已经有下拉输入框力，太好力！ -->
                         <s-picker class="dropdown-input" id="serveRule" data-lang="ui.setup.serveRule" data-lang-prop="label">
-                            <!-- None -->
-                            <s-picker-item data-lang="ui.setup.serveRule.none"></s-picker-item>
-                            <!-- In Turn -->
-                            <s-picker-item data-lang="ui.setup.serveRule.inTurn"></s-picker-item>
+                            <s-picker-item value="0" data-lang="ui.setup.serveRule.none"></s-picker-item>
+                            <s-picker-item value="1" data-lang="ui.setup.serveRule.inTurn"></s-picker-item>
                         </s-picker>
                     </div>
                     <div class="form-group" id="rotationalServesGroup" hidden>
                         <!-- Balls Each Turn -->
                         <s-text-field id="rotationalServes" data-lang="ui.setup.rotationalServes" data-lang-prop="label" value="2"></s-text-field>
+                    </div>
+                    <div class="form-group">
+                        <!-- Strict Mode -->
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <s-switch id="strictMode"></s-switch>
+                            <div data-lang="ui.setup.strictMode"></div>
+                        </div>
                     </div>
                 </div>
                 <div id="setup-list">
@@ -125,7 +130,7 @@
             
             <div id="gameBoardWrapper">
                 <!-- Tab控制 -->
-                <s-tab class="game-board" id="gameBoardSelector">
+                <s-tab class="game-board" id="gameBoardSelector" style="justify-content: center">
                     <s-tab-item selected="true">
                         <div slot="text" data-lang="ui.gameBoard.tab.score"></div>
                     </s-tab-item>
@@ -161,7 +166,18 @@
                     <div id="board-history">
                         <div id="matchHistory">
                             <h2 data-lang="ui.gameBoard.matchHistory"></h2>
-                            <ul id="historyList"></ul>
+                            <s-table id="historyTable" style="overflow: auto; display: block; width: 60%">
+                                <s-thead>
+                                    <s-tr>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.match"></s-th>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.score"></s-th>
+                                        <s-th data-lang="ui.gameBoard.matchHistory.winner"></s-th>
+                                    </s-tr>
+                                </s-thead>
+                                <s-tbody>
+                                    <!-- Rows will be populated by JS -->
+                                </s-tbody>
+                            </s-table>
                         </div>
                     </div>
                     <!-- Tab：信息 -->
