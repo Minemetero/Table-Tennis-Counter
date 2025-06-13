@@ -17,6 +17,6 @@
     },
     "dependencies": {
         "canvas-confetti": "^1.9.3",
-        "sober": "~1.1.5"
+        "sober": "~1.1.8"
     }
 }
