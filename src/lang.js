@@ -51,6 +51,7 @@ export const languages = {
         'ui.tooltip.noScoreToUndo': 'No score to undo',
         'ui.gameBoard.matchHistory.match': 'Match',
         'ui.gameBoard.matchHistory.score': 'Score',
+        'ui.gameBoard.matchHistory.setScore': 'Set Score',
         'ui.gameBoard.matchHistory.winner': 'Winner',
     },
     'zh-CN': {
@@ -98,6 +99,7 @@ export const languages = {
         'ui.tooltip.noScoreToUndo': '没有可撤销的分数',
         'ui.gameBoard.matchHistory.match': '比赛',
         'ui.gameBoard.matchHistory.score': '比分',
+        'ui.gameBoard.matchHistory.setScore': '局分',
         'ui.gameBoard.matchHistory.winner': '获胜者',
     },
     'zh-TW': {
@@ -145,6 +147,7 @@ export const languages = {
         'ui.tooltip.noScoreToUndo': '沒有可撤銷的分數',
         'ui.gameBoard.matchHistory.match': '比賽',
         'ui.gameBoard.matchHistory.score': '比分',
+        'ui.gameBoard.matchHistory.setScore': '局分',
         'ui.gameBoard.matchHistory.winner': '獲勝者',
     },
     'ja-JP': {
@@ -192,6 +195,7 @@ export const languages = {
         'ui.tooltip.noScoreToUndo': '取り消すスコアはありません',
         'ui.gameBoard.matchHistory.match': '試合',
         'ui.gameBoard.matchHistory.score': 'スコア',
+        'ui.gameBoard.matchHistory.setScore': 'セットスコア',
         'ui.gameBoard.matchHistory.winner': '勝者',
     },
     'el-GR': {
@@ -239,6 +243,7 @@ export const languages = {
         'ui.tooltip.noScoreToUndo': 'Δεν υπάρχει σκορ για αναίρεση',
         'ui.gameBoard.matchHistory.match': 'Αγώνας',
         'ui.gameBoard.matchHistory.score': 'Σκορ',
+        'ui.gameBoard.matchHistory.setScore': 'Σκορ σετ',
         'ui.gameBoard.matchHistory.winner': 'Νικητής',
     },
 };

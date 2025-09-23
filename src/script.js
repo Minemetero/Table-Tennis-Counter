@@ -176,18 +176,26 @@ export function incrementCurrentMatchScore(playerName) {
         : currentMatchScores[playerName] >= winBalls;
 
     if (hasWon) {
+        const player1 = players[currentMatch[0]];
+        const player2 = players[currentMatch[1]];
+        const player1Score = currentMatchScores[player1];
+        const player2Score = currentMatchScores[player2];
+
         totalScores[playerName]++;
+
+        matchHistory.push({
+            player1,
+            player2,
+            player1Score,
+            player2Score,
+            player1SetScore: totalScores[player1],
+            player2SetScore: totalScores[player2],
+            winner: playerName,
+        });
+
         document.getElementById('result').innerText = lang(
             'ui.gameBoard.winMessage',
             playerName
-        );
-        matchHistory.push(
-            lang(
-                'ui.gameBoard.matchHistory.item',
-                players[currentMatch[0]],
-                players[currentMatch[1]],
-                playerName
-            )
         );
         disableScoreButtons();
         
@@ -288,29 +296,48 @@ export function updateHistoryList() {
     const tbody = historyTable.querySelector('s-tbody');
     tbody.innerHTML = '';
 
-    matchHistory.forEach((match, index) => {
-        // Extract the two players from the match string
-        const matchParts = match.split(' vs ');
-        const player1 = matchParts[0].trim();
-        const player2 = matchParts[1].split(':')[0].trim();
+    matchHistory.forEach((match) => {
+        let matchUp;
+        let scoreLine;
+        let setScoreLine;
+        let winner;
 
-        const scoreLine = `${totalScores[player1]}:${totalScores[player2]}`;
-        // Extract winner
-        const afterColon = match.substring(match.lastIndexOf(':') + 1).trim();
-        const winnerParts = afterColon.split(' ');
-        const winner = winnerParts.length > 1 ? winnerParts.slice(0, -1).join(' ') : afterColon;
+        if (typeof match === 'string') {
+            const matchParts = match.split(' vs ');
+            const player1 = matchParts[0]?.trim?.() ?? '';
+            const player2 = matchParts[1]?.split(':')[0]?.trim?.() ?? '';
 
-        const matchUp = `${player1} vs ${player2}`;
+            matchUp = `${player1} vs ${player2}`.trim();
+            scoreLine = `${totalScores[player1] ?? 0}:${totalScores[player2] ?? 0}`;
+            setScoreLine = '—';
+
+            const afterColon = match.substring(match.lastIndexOf(':') + 1).trim();
+            const winnerParts = afterColon.split(' ');
+            winner = winnerParts.length > 1 ? winnerParts.slice(0, -1).join(' ') : afterColon;
+        } else {
+            matchUp = `${match.player1} vs ${match.player2}`;
+            scoreLine = `${match.player1Score}:${match.player2Score}`;
+            setScoreLine = `${match.player1SetScore}:${match.player2SetScore}`;
+            winner = match.winner;
+        }
 
         const tr = document.createElement('s-tr');
+
         const tdMatch = document.createElement('s-td');
         tdMatch.textContent = matchUp;
+
         const tdScore = document.createElement('s-td');
         tdScore.textContent = scoreLine;
+
+        const tdSetScore = document.createElement('s-td');
+        tdSetScore.textContent = setScoreLine;
+
         const tdWinner = document.createElement('s-td');
         tdWinner.textContent = winner;
+
         tr.appendChild(tdMatch);
         tr.appendChild(tdScore);
+        tr.appendChild(tdSetScore);
         tr.appendChild(tdWinner);
         tbody.appendChild(tr);
     });
