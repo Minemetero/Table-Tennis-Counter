@@ -364,7 +364,8 @@ export function resetScores() {
 }
 
 export function undoLastScore() {
-    if (!lastScoringPlayer) {
+    if (!lastScoringPlayer ||
+      currentMatchScores[lastScoringPlayer] <= 0) {
         showSnackBar(lang('ui.tooltip.noScoreToUndo'), 'NoScoreToUndo', 'warning');
         return;
     }
